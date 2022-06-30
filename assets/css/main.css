@@ -1,5 +1,27 @@
-.central-content{
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.disabled {
+    opacity: .3;
+    cursor: default;
+}
+
+.header{
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.header > img{
+    width: 30px;
+    height: 30px;
 }

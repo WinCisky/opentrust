@@ -1,0 +1,34 @@
+.home-central-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.home-central-content > img{
+    width: 200px;
+    height: 200px;
+}
+
+.home-central-content .home-title {
+    font-size: 55px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.home-central-content .home-buttons {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 55px;
+}
+
+.home-central-content .home-buttons>div {
+    border: 2px solid #BDBDBD;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: #EEEEEE;
+    cursor: pointer;
+}
