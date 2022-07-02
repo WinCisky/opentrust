@@ -2,11 +2,20 @@
     const myApiEndpoint = "https://gjclmptpvaepykpghadl.functions.supabase.co/trusty/test";
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", myApiEndpoint, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    // var xhr = new XMLHttpRequest();
+    // xhr.open("POST", myApiEndpoint, true);
     // xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-        code: code
-    }));
+    // // xhr.setRequestHeader('Content-Type', 'application/json');
+    // xhr.send(JSON.stringify({
+    //     code: code
+    // }));
+    let data = { code: code };
+
+    fetch(myApiEndpoint, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(res => {
+        console.log("Request complete! response:", res);
+    });
 </script>
