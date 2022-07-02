@@ -14,22 +14,26 @@
 </head>
 
 <body>
-    <div class="header" onclick="location.href='index.html';"><img src="assets/img/icon_review_love.svg">trusty</div>
+    <div class="header" onclick="location.href='index.html';"><img src="assets/img/icon_review.svg">trusty</div>
     <div class="register-central-content">
         <img src="assets/img/icon_api.svg" alt="Api key"/>
         <div class="register-subtitle">
             follow
-            <a href="https://mailchimp.com/developer/transactional/guides/send-first-email/" target="_blank">
+            <a href="https://support.google.com/accounts/answer/185833" target="_blank">
                 this guide
             </a>
-            and insert below you MailChimp API key.
+            and insert below <br> your email and the 16 character password.
         </div>
         <form name="registration-form" onsubmit="event.preventDefault(); validateRegistrationForm();">
             <div class="form-fields-align">
                 <input type="text" id="api-key" name="api-key">
+                <input type="text" id="api-key" name="api-key">
                 <input type="submit" value="Submit">
             </div>
         </form>
+        <div class="loader left"></div>
+        <div class="loader opposite"></div>
+        <div class="loader right"></div>
     </div>
     <script defer src='assets/js/main.js'></script>
     <script defer src='assets/js/register.js'></script>
