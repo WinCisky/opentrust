@@ -19,27 +19,14 @@
 <body>
     <div class="header" onclick="location.href='index.html';"><img src="assets/img/icon_review.svg">trusty</div>
     <div class="central-content">
-        <img src="assets/img/icon_api.svg" alt="Api key"/>
+        <img src="assets/img/icon_google.svg" alt="Api key"/>
         <div class="subtitle">
-            follow
-            <a href="https://support.google.com/accounts/answer/185833" target="_blank">
-                this guide
-            </a>
-            and insert below <br> your email and the 16 character password.
+            We need your permission to send email with your account.
         </div>
-        <form name="registration-form" onsubmit="event.preventDefault(); validateRegistrationForm();">
-            <div class="form-fields-align">
-                <input type="text" id="api-key" name="api-key">
-                <input type="text" id="api-key" name="api-key">
-                <input type="submit" value="Submit">
-            </div>
-        </form>
-        <div class="loader left"></div>
-        <div class="loader opposite"></div>
-        <div class="loader right"></div>
+        <div class="button" onclick="startGoogleAuth();">Authorize</div>
     </div>
     <script defer src='assets/js/main.js'></script>
-    <script defer src='assets/js/register.js'></script>
+    <script defer src='assets/js/mailauth.js'></script>
 </body>
 
 </html>

@@ -10,6 +10,10 @@
 .home-central-content > img{
     width: 200px;
     height: 200px;
+
+    -webkit-animation: slowswing 4s ease-in-out infinite;
+    /* Safari */
+    animation: slowswing 4s ease-in-out infinite;
 }
 
 .home-central-content .home-title {
@@ -32,4 +36,18 @@
     border-radius: 5px;
     background-color: #EEEEEE;
     cursor: pointer;
+}
+
+@keyframes slowswing {
+    0% {
+        transform: translateY(0px);
+    }
+
+    25% {
+        transform: translateY(-40px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
