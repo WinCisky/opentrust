@@ -21,6 +21,7 @@
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 20px;
+    color: var(--main);
 }
 
 .home-central-content .home-buttons {
@@ -30,24 +31,22 @@
     gap: 55px;
 }
 
-.home-central-content .home-buttons>div {
-    border: 2px solid #BDBDBD;
-    padding: 8px 16px;
-    border-radius: 5px;
-    background-color: #EEEEEE;
-    cursor: pointer;
+@media only screen and (max-width: 600px) {
+    .home-central-content {
+        height: calc(90vh - 30px);
+    }
 }
 
 @keyframes slowswing {
     0% {
-        transform: translateY(0px);
+        transform: translateY(0px) scale(1,1);
     }
 
     25% {
-        transform: translateY(-40px);
+        transform: translateY(-40px) scale(1.1,1.1);
     }
 
     100% {
-        transform: translateY(0px);
+        transform: translateY(0px) scale(1,1);
     }
 }

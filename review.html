@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>trusty</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/review.css'>
+    <link rel="icon" type="image/x-icon" href="assets/img/icon_review.svg">
+    <!-- stars icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <div class="header disabled" onclick="window.open('index.html');"><img src="assets/img/icon_review.svg">trusty</div>
+    <div class="central-content">
+
+        <form name="registration-form" onsubmit="event.preventDefault(); validateRegistrationForm();">
+
+            <div class="form-fields-align">
+                <div class="subtitle less-margin">
+                    Hello Bob,<br>
+                    Write about your shopping experience
+                    <!-- Racconta della tua esperienza d'acquisto -->
+                </div>
+                <textarea style="resize: none" type="text" id="api-key" name="api-key" placeholder="Description" rows="4"></textarea>
+                <div class="subtitle less-margin">
+                    Give your review a score
+                    <!-- Racconta della tua esperienza d'acquisto -->
+                </div>
+                <div style="width: 100%; text-align:center; margin: 10px;">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <div class="subtitle less-margin">
+                    Give your review a title
+                    <!-- Racconta della tua esperienza d'acquisto -->
+                </div>
+                <input type="text" id="api-key" name="api-key" placeholder="Title">
+                
+                <input type="submit" value="Post review">
+            </div>
+        </form>
+    </div>
+    <script defer src='assets/js/main.js'></script>
+</body>
+
+</html>

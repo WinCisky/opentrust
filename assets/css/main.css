@@ -1,3 +1,20 @@
+:root {
+    --white: #fff;
+    --grey: #e0e0e0;
+    --light: #f5f5f5;
+    --accent: white;
+    --icon: #6EA8E0;
+    --main: #2F4961;
+    --cheap: #D6EAFF;
+    --moderate: #944C48;
+    --secondary: #E08984;
+    --distorted: #F7E09E;
+    --deformed: #FFF0D6;
+    --quiet: #E6CECC;
+    --dark: #4D5761;
+    --star: #e59700;
+}
+
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -8,7 +25,12 @@ body {
     cursor: default;
 }
 
-.header{
+.text{
+    color: var(--dark);
+    text-align: center;
+}
+
+.header {
     position: absolute;
     top: 5px;
     left: 0;
@@ -19,9 +41,10 @@ body {
     align-items: center;
     gap: 5px;
     cursor: pointer;
+    color: var(--icon);
 }
 
-.header > img{
+.header>img {
     width: 30px;
     height: 30px;
 }
@@ -47,45 +70,113 @@ body {
     line-height: 24px;
 }
 
+.central-content .subtitle.less-margin {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .central-content .subtitle>a {
     font-weight: bold;
     text-decoration: underline;
-    color: #212121;
+    color: var(--dark);
 }
 
-.central-content form input[type=text] {
+.central-content form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.central-content form input[type=text]::placeholder,
+.central-content form textarea::placeholder {
+    font-family: 'Roboto', sans-serif;
+}
+
+.central-content form input[type=text],
+.central-content form textarea {
     padding: 6px;
-    border: 2px solid #BDBDBD;
-    background-color: #F5F5F5;
+    border: 2px solid var(--secondary);
+    background-color: var(--quiet);
     border-radius: 5px;
+    font-family: inherit;
+    font-size: 14px;
 }
 
 .central-content form input[type=submit],
-.central-content .button {
-    padding: 4px 10px;
-    border: 2px solid #757575;
-    background-color: #E0E0E0;
+.central-content .button,
+.home-central-content .button {
+    border: 2px solid var(--secondary);
+    padding: 8px 16px;
     border-radius: 5px;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
+    background-color: var(--distorted);
     cursor: pointer;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
+}
+
+.central-content form input[type=submit] {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: 500;
 }
 
 .central-content form input[type=submit]:hover,
-.central-content .button:hover {
-    border: 2px solid #424242;
+.central-content .button:hover,
+.home-central-content .button:hover {
+    border: 2px solid var(--moderate);
 }
 
 .central-content form input[type=submit]:active,
-.central-content .button:active {
-    background-color: #BDBDBD;
+.central-content .button:active,
+.home-central-content .button:active {
+    background-color: var(--secondary);
+    border: 2px solid var(--secondary);
 }
 
 .central-content form .form-fields-align {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 5px;
+    width: 350px;
+}
+
+.central-content form .form-fields-align input[type=text],
+.central-content form .form-fields-align textarea {
+    width: 100%;
+}
+
+.central-content form .form-fields-align input[type=text].small {
+    width: 160px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .central-content {
+        height: calc(90vh - 30px);
+    }
+
+    .central-content form .form-fields-align {
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .central-content form .form-fields-align input[type=text].small {
+        width: 80%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }

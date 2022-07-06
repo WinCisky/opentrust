@@ -5,7 +5,7 @@
     height: 25px;
     width: 25px;
     transform: translate(-50%, -50%);
-    background-color: #bbb;
+    background-color: var(--moderate);
     border-radius: 50%;
     -webkit-animation: swing 2s ease-in-out infinite;
     /* Safari */

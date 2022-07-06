@@ -1,0 +1,28 @@
+body{
+    background-color: var(--cheap);
+}
+
+.form-fields-align{
+    border: 2px solid var(--white);
+    padding: 40px;
+    border-radius: 5px;
+    background-color: var(--white);
+    box-shadow: 0px 3px 6px var(--cheap);
+}
+
+.checked{
+    /* color: orange; */
+    color: var(--star);
+}
+
+.central-content form textarea,
+.central-content form input[type=text]{
+    border-color: var(--grey);
+    background-color: var(--light);
+}
+
+@media only screen and (max-width: 600px){
+    .form-fields-align{
+        padding: 10px;
+    }
+}
