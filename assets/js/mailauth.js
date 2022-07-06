@@ -1,5 +1,5 @@
 // auth call
-const CLIENT_ID = "670645219148-5f7edl6705d4lmaro7h01oucuh24rsv2.apps.googleusercontent.com";
+const CLIENT_ID = "825971864111-8k5j2td85vp6vijbc9ogjjsdvstu6kuo.apps.googleusercontent.com";
 const REDIRECT_URI = "https://wincisky.github.io/opentrust/test.html";
 
 const uriEnc = encodeURIComponent(REDIRECT_URI);
