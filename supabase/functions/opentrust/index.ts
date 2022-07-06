@@ -16,7 +16,7 @@ serve(async (req) => {
 
   try {
     const url = new URL(req.url);
-    const pathname = url.pathname.replace("/trusty", "");
+    const pathname = url.pathname.replace("/opentrust", "");
     // console.log(url.pathname);
     switch (pathname) {
       // deno-lint-ignore no-case-declarations

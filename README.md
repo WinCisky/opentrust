@@ -1,6 +1,6 @@
-# trusty
+# opentrust
 
-go to the [website](https://wincisky.github.io/trusty)
+go to the [website](https://wincisky.github.io/opentrust)
 
 new order [handler](https://dash.deno.com/projects/neworder)
 
@@ -20,4 +20,4 @@ new order [handler](https://dash.deno.com/projects/neworder)
 
 ## about
 
-trusty is a free and open source customers reviews solution for shopify built with [deno](https://deno.land/) and [supabase](https://supabase.com/)
+opentrust is a free and open source customers reviews solution for shopify built with [deno](https://deno.land/) and [supabase](https://supabase.com/)

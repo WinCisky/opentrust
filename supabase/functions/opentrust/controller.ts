@@ -2,7 +2,7 @@ import { addCustomer, getCustomer, updateCustomer } from "./model.ts";
 
 const CLIENT_ID = "670645219148-5f7edl6705d4lmaro7h01oucuh24rsv2.apps.googleusercontent.com";
 const CLIENT_SECRET = Deno.env.get("CLIENT_SECRET") ?? "";
-const REDIRECT_URI = "https://wincisky.github.io/trusty/test.html";
+const REDIRECT_URI = "https://wincisky.github.io/opentrust/test.html";
 
 const REFRESH_TOKEN_URI = "https://oauth2.googleapis.com/token";
 const SEND_MAIL_URI = "https://gmail.googleapis.com/gmail/v1/users/{userId}/messages/send";
