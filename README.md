@@ -1,1 +1,1 @@
-# trusty
+# opentrust
