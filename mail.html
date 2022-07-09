@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/main.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/register.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/mailauth.css'>
     <link rel="icon" type="image/x-icon" href="assets/img/icon_review.svg">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
@@ -19,21 +20,22 @@
 
 <body>
     <div class="header" onclick="location.href='index.html';"><img src="assets/img/icon_review.svg">opentrust</div>
-    <div class="central-content">
+    <div class="central-content" id="central-content">
         <img src="assets/img/icon_mail_check.svg" alt="check your mail"/>
         <div class="subtitle text">
             You'll receive an email with your account.
         </div>
         <!-- <div class="button" onclick="startGoogleAuth();">Authorize</div> -->
-        <form action="?" method="POST">
+        <form id="registrationForm" class="vertical" onsubmit="event.preventDefault(); validateRegistrationForm();">
+            <input type="text" id="user-email" name="user-email" placeholder="email">
             <div class="g-recaptcha" data-sitekey="6Lev1M0gAAAAACTZFk7u3MFHdZA1SWxzRz8qUkkQ"></div>
-            <br/>
-            <input type="text" id="api-key" name="api-key" placeholder="email">
             <input type="submit" value="Submit">
-          </form>
+        </form>
+        <div class="status-message" id="status-message"></div>
     </div>
     <script defer src='assets/js/main.js'></script>
     <script defer src='assets/js/mailauth.js'></script>
+    <script defer src='assets/js/register.js'></script>
 </body>
 
 </html>
