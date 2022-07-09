@@ -38,7 +38,10 @@ function _validateRegistrationForm() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${anonBearer}`,
             },
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
+            body: JSON.stringify({
+                email : userEmail,
+                recaptcha : recaptchaToken
+            }) // body data type must match "Content-Type" header
         })
             .then(function (response) {
                 //disable loading animation
