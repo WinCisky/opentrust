@@ -4,7 +4,7 @@
 
 import { serve } from "https://deno.land/std@0.131.0/http/server.ts";
 import { corsHeaders } from "../_shared/cors.ts";
-import { processCustomerCode, sendTestMail } from "./controller.ts";
+import { processCustomerCode, sendTestMail, userRegistration } from "./controller.ts";
 
 console.log("Hello from Functions!");
 
@@ -30,6 +30,13 @@ serve(async (req) => {
       case "/neworder":
         console.log(req.json());
         break;
+      // deno-lint-ignore no-case-declarations
+      case "/userRegistration":
+        const { email, recaptcha } = await req.json();
+        return new Response(JSON.stringify(await userRegistration(email, recaptcha)), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 200,
+        });
 
       default:
         //newOrder

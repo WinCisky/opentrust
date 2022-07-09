@@ -1,11 +1,18 @@
 import { addCustomer, getCustomer, updateCustomer } from "./model.ts";
 
+const PWD_CHARS = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const PWD_MIN = 12;
+const PWD_MAX = 16;
+
 const CLIENT_ID = "670645219148-5f7edl6705d4lmaro7h01oucuh24rsv2.apps.googleusercontent.com";
 const CLIENT_SECRET = Deno.env.get("CLIENT_SECRET") ?? "";
 const REDIRECT_URI = "https://wincisky.github.io/opentrust/test.html";
 
 const REFRESH_TOKEN_URI = "https://oauth2.googleapis.com/token";
 const SEND_MAIL_URI = "https://gmail.googleapis.com/gmail/v1/users/{userId}/messages/send";
+
+const CAPTCHA_SECRET = Deno.env.get("CAPTCHA_SECRET") ?? "";
+const VERIFY_CAPTCHA_URI = "https://www.google.com/recaptcha/api/siteverify";
 
 
 async function processCustomerCode(code: string) {
@@ -63,4 +70,44 @@ async function sendTestMail() {
   return JSON.stringify(await response.json());
 }
 
-export { processCustomerCode, sendTestMail };
+function createPassword(): string
+{
+  const passwordLength = Math.floor(Math.random() * (PWD_MAX - PWD_MIN + 1) + PWD_MIN);
+  let password = "";
+  let randomNumber = 0;
+  for (let i = 0; i <= passwordLength; i++) {
+    randomNumber = Math.floor(Math.random() * PWD_CHARS.length);
+    password += PWD_CHARS.substring(randomNumber, randomNumber +1);
+  }
+  return password;
+}
+
+async function digestMessage(message : string) {
+  const msgUint8 = new TextEncoder().encode(message);                           // encode as (utf-8) Uint8Array
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);           // hash the message
+  const hashArray = Array.from(new Uint8Array(hashBuffer));                     // convert buffer to byte array
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
+  return hashHex;
+}
+
+async function userRegistration(email: string, recaptcha: string) {
+  const response = await fetch(VERIFY_CAPTCHA_URI, {
+    method: "POST",
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `secret=${CAPTCHA_SECRET}&response=${recaptcha}`
+  });
+  const challenge = await response.json();
+  if(!challenge.success)
+    return [challenge.success, challenge["error-codes"] ?? "" ];
+
+  const customer = await getCustomer(email);
+  if(!customer || customer.length > 0)
+    return [false, "the email is already registered"];
+
+  const password = createPassword();
+  const hashedPassword = await digestMessage(password);
+
+  
+}
+
+export { processCustomerCode, sendTestMail, userRegistration };
