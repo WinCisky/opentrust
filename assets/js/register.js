@@ -50,29 +50,15 @@ function _validateRegistrationForm() {
             })
             .then(function (myJson) {
                 console.log(myJson);
-                displayStatusMessage(text = JSON.stringify(myJson));
-                //TODO: check if response is ok then show: "check your mail"
+                const isValid = myJson[0];
+                const _errMsg = myJson[1];
+                if(isValid)
+                    window.location.href = "/mail-check.html";
+                else
+                    displayStatusMessage(text = _errMsg);
             });
 
     } else {
         displayStatusMessage(text = "recaptcha not accepted");
     }
 }
-
-// $('#submitButton').on('click',function(){
-//     $.ajax({
-//           url: "http://localhost:15797/api/values",
-//           type: 'POST',
-//           data: { 
-//                   firstName: $('#firstName').val(),
-//                   lastName: $('#lastName').val()
-//                 },
-//           contentType: 'application/json',
-//           headers: {
-//                     "Authorization": "Bearer " + $('#tokenField').val()
-//                  },
-//           async: false
-//             })
-// });
-
-

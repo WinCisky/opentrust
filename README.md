@@ -1,6 +1,6 @@
 # opentrust
 
- - Pagina di registrazione
+ - Pagina di registrazione completata
 
  - Creazion di credenziali ed invio via mail per la registrazione dell'utente
 
@@ -15,3 +15,7 @@
 ## watching sass
 
 `sass --watch assets/scss:assets/css --style compressed`
+
+## possible vulnerabilities
+
+ - infinite richieste col bearer dallo stesso ip
