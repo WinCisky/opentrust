@@ -25,13 +25,15 @@
         <div class="subtitle text">
             You'll receive an email with your account.
         </div>
-        <!-- <div class="button" onclick="startGoogleAuth();">Authorize</div> -->
-        <form id="registrationForm" class="vertical" onsubmit="event.preventDefault(); validateRegistrationForm();">
+        <form id="registrationForm" class="vertical" onsubmit="event.preventDefault(); _validateRegistrationForm();">
             <input type="text" id="user-email" name="user-email" placeholder="email">
             <div class="g-recaptcha" data-sitekey="6Lev1M0gAAAAACTZFk7u3MFHdZA1SWxzRz8qUkkQ"></div>
             <input type="submit" value="Submit">
         </form>
         <div class="status-message" id="status-message"></div>
+    </div>
+    <div class="center-content">
+        <div class="loader" id="loading-animation"></div>
     </div>
     <script defer src='assets/js/main.js'></script>
     <script defer src='assets/js/mailauth.js'></script>

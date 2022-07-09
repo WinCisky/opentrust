@@ -7,6 +7,6 @@ const scopeEnc = encodeURIComponent("https://mail.google.com/ https://www.google
 
 const response = `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${uriEnc}&prompt=consent&response_type=code&client_id=${CLIENT_ID}&scope=${scopeEnc}&access_type=offline`;
 
-function startGoogleAuth(){
+function _startGoogleAuth(){
     window.location.href = response;
 }
