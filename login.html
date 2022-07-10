@@ -6,7 +6,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>opentrust registration</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <meta name="description" content="Opentrust registration page">
+    <meta name="description" content="Opentrust login page">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/font.css'>
@@ -17,20 +17,19 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
-<!-- https://help.shopify.com/en/manual/orders/notifications/webhooks -->
-
 <body>
     <div class="header high-contrast" onclick="location.href='index.html';">
         <img src="assets/img/icon_review_white.svg" alt="logo">
         opentrust
     </div>
     <div class="central-content" id="central-content">
-        <img src="assets/img/icon_mail.svg" alt="register with your email"/>
+        <img src="assets/img/icon_user.svg" alt="register with your email"/>
         <div class="subtitle text">
-            You'll receive an email with your account.
+            Creadentials are provided upon registration.
         </div>
         <form id="registrationForm" class="vertical" onsubmit="event.preventDefault(); _validateRegistrationForm();">
             <input type="text" id="user-email" name="user-email" placeholder="email">
+            <input type="text" id="user-password" name="user-password" placeholder="password">
             <div class="g-recaptcha" data-sitekey="6Lev1M0gAAAAACTZFk7u3MFHdZA1SWxzRz8qUkkQ"></div>
             <input type="submit" value="Submit">
         </form>

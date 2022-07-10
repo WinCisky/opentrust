@@ -42,11 +42,20 @@ body {
     gap: 5px;
     cursor: pointer;
     color: var(--icon);
-}
+    opacity: .3;
 
-.header>img {
-    width: 30px;
-    height: 30px;
+    &>img {
+        width: 30px;
+        height: 30px;
+    }
+
+    &.high-contrast{
+        color: var(--white);
+        background-color: var(--icon);
+        top: 0px;
+        padding: 10px;
+        opacity: 1;
+    }
 }
 
 .central-content {
@@ -56,51 +65,79 @@ body {
     align-items: center;
     height: calc(100vh - 30px);
     margin: 15px;
-}
 
-.central-content>img {
-    width: 80px;
-    height: 80px;
-}
+    &>img {
+        width: 80px;
+        height: 80px;
+    }
 
-.central-content .subtitle {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    line-height: 24px;
-}
+    .subtitle {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        line-height: 24px;
+    }
 
-.central-content .subtitle.less-margin {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+    .subtitle.less-margin {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .subtitle>a {
+        font-weight: bold;
+        text-decoration: underline;
+        color: var(--dark);
+    }
 
-.central-content .subtitle>a {
-    font-weight: bold;
-    text-decoration: underline;
-    color: var(--dark);
-}
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
 
-.central-content form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
+        input[type=text],
+        textarea{
+            padding: 6px;
+            border: 2px solid var(--secondary);
+            background-color: var(--quiet);
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 14px;
 
-.central-content form input[type=text]::placeholder,
-.central-content form textarea::placeholder {
-    font-family: 'Roboto', sans-serif;
-}
+            &::placeholder{
+                font-family: 'Roboto', sans-serif;
+            }
+        }
 
-.central-content form input[type=text],
-.central-content form textarea {
-    padding: 6px;
-    border: 2px solid var(--secondary);
-    background-color: var(--quiet);
-    border-radius: 5px;
-    font-family: inherit;
-    font-size: 14px;
+        input[type=submit] {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            font-weight: 500;
+        }
+
+        .form-fields-align {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            width: 350px;
+
+            input[type=text],
+            textarea {
+                width: 100%;
+
+                &.small {
+                    width: 160px;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
 }
 
 .central-content form input[type=submit],
@@ -121,14 +158,6 @@ body {
     /* Standard */
 }
 
-.central-content form input[type=submit] {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 15px;
-    font-family: inherit;
-    font-weight: 500;
-}
-
 .central-content form input[type=submit]:hover,
 .central-content .button:hover,
 .home-central-content .button:hover {
@@ -142,41 +171,20 @@ body {
     border: 2px solid var(--secondary);
 }
 
-.central-content form .form-fields-align {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 5px;
-    width: 350px;
-}
-
-.central-content form .form-fields-align input[type=text],
-.central-content form .form-fields-align textarea {
-    width: 100%;
-}
-
-.central-content form .form-fields-align input[type=text].small {
-    width: 160px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
 @media only screen and (max-width: 600px) {
     .central-content {
         height: calc(90vh - 30px);
-    }
 
-    .central-content form .form-fields-align {
-        width: 100%;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
+        form .form-fields-align {
+            width: 100%;
+            margin-left: 10px;
+            margin-right: 10px;
 
-    .central-content form .form-fields-align input[type=text].small {
-        width: 80%;
-        margin-left: 10px;
-        margin-right: 10px;
+            input[type=text].small {
+                width: 80%;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
     }
 }

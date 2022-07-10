@@ -53,7 +53,7 @@ function _validateRegistrationForm() {
                 const isValid = myJson[0];
                 const _errMsg = myJson[1];
                 if(isValid)
-                    window.location.href = "/mail-check.html";
+                    window.location.href = "mail-check.html";
                 else
                     displayStatusMessage(text = _errMsg);
             });

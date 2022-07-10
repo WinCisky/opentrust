@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>opentrust</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="description" content="Opentrust leave a review">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/font.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/main.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='assets/css/review.css'>
     <link rel="icon" type="image/x-icon" href="assets/img/icon_review.svg">
@@ -18,7 +19,10 @@
 
 <body>
 
-    <div class="header disabled" onclick="window.open('index.html');"><img src="assets/img/icon_review.svg">opentrust</div>
+    <div class="header disabled" onclick="window.open('index.html');">
+        <img src="assets/img/icon_review.svg" alt="logo">
+        opentrust
+    </div>
     <div class="central-content">
 
         <form name="registration-form" onsubmit="event.preventDefault(); _validateRegistrationForm();">
@@ -29,7 +33,7 @@
                     Write about your shopping experience
                     <!-- Racconta della tua esperienza d'acquisto -->
                 </div>
-                <textarea style="resize: none" type="text" id="api-key" name="api-key" placeholder="Description" rows="4"></textarea>
+                <textarea style="resize: none" type="text" id="review-description" name="review-description" placeholder="Description" rows="4"></textarea>
                 <div class="subtitle less-margin">
                     Give your review a score
                     <!-- Racconta della tua esperienza d'acquisto -->
@@ -45,7 +49,7 @@
                     Give your review a title
                     <!-- Racconta della tua esperienza d'acquisto -->
                 </div>
-                <input type="text" id="api-key" name="api-key" placeholder="Title">
+                <input type="text" id="review-title" name="review-title" placeholder="Title">
                 
                 <input type="submit" value="Post review">
             </div>
