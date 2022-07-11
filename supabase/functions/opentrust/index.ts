@@ -4,14 +4,18 @@
 
 import { serve } from "https://deno.land/std@0.131.0/http/server.ts";
 import { corsHeaders } from "../_shared/cors.ts";
-import { processCustomerCode, sendTestMail, userRegistration } from "./controller.ts";
+import {
+  processCustomerCode,
+  sendMail,
+  userRegistration,
+} from "./controller.ts";
 
 console.log("Hello from Functions!");
 
 serve(async (req) => {
   // This is needed if you're planning to invoke your function from a browser.
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
   }
 
   try {
@@ -25,7 +29,7 @@ serve(async (req) => {
         await processCustomerCode(code);
         break;
       case "/test2":
-        console.log(await sendTestMail());
+        // console.log(await sendMail("xsimone97@hotmail.it", "test", "content!"));
         break;
       case "/neworder":
         console.log(req.json());
@@ -33,15 +37,19 @@ serve(async (req) => {
       // deno-lint-ignore no-case-declarations
       case "/userRegistration":
         const { email, recaptcha } = await req.json();
-        return new Response(JSON.stringify(await userRegistration(email, recaptcha)), {
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-          status: 200,
-        });
+        return new Response(
+          JSON.stringify(await userRegistration(email, recaptcha)),
+          {
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+            status: 200,
+          },
+        );
 
       default:
         //newOrder
-        if(pathname.includes("/neworder/") && pathname.indexOf("/neworder/") == 0)
-        {
+        if (
+          pathname.includes("/neworder/") && pathname.indexOf("/neworder/") == 0
+        ) {
           const uuid = pathname.replace("/neworder/", "");
           console.log(uuid);
           console.log(req.json());

@@ -2,21 +2,21 @@ import { supabaseClient } from "../_shared/supabaseClient.ts";
 
 async function addCustomer(
   email: string,
-  refresh_token: string
+  hashed_password: string,
 ) {
   const result = await supabaseClient
     .from("customers")
     .insert([
       {
         email: email,
-        refresh_token: refresh_token,
+        hashed_password: hashed_password,
       },
     ]);
   return [result.data, result.error] as const;
 }
 
 async function getCustomer(
-  email: string
+  email: string,
 ) {
   const result = await supabaseClient
     .from("customers")
@@ -25,15 +25,28 @@ async function getCustomer(
   return result.data;
 }
 
-async function updateCustomer(
+async function refreshTokenCustomer(
   email: string,
-  refresh_token: string
+  access_token: string,
 ) {
   const result = await supabaseClient
     .from("customers")
-    .update({ refresh_token: refresh_token })
+    .update({
+      access_token: access_token,
+      access_token_creation: ((new Date()).toISOString()).toLocaleString(),
+    })
     .match({ email: email });
   return [result.data, result.error] as const;
 }
 
-export { addCustomer, getCustomer, updateCustomer };
+async function getCustomerFromToken(
+  access_token: string,
+) {
+  const result = await supabaseClient
+    .from("customers")
+    .select()
+    .match({ access_token: access_token });
+  return result.data;
+}
+
+export { addCustomer, getCustomer, getCustomerFromToken, refreshTokenCustomer };
