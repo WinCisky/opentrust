@@ -1,6 +1,6 @@
 # opentrust
 
- - Pagina di registrazione completata
+ - Aggiungere selezione stelle per la recensione
 
  - Creazion di credenziali ed invio via mail per la registrazione dell'utente
 
