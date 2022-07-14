@@ -32,12 +32,13 @@ function _validateLoginForm() {
           togglePageLoadingAnimation(false);
           return response.json();
         })
-        .then(function (myJson) {
+        .then(function (myJson: ServerResponse) {
           console.log(myJson);
-          const isValid = myJson[0];
-          const _errMsg = myJson[1];
+          const isValid = myJson.success;
+          const _errMsg = myJson.message;
           if (isValid) {
-            window.location.href = "mail-check.html";
+            displayStatusMessage(_errMsg); //debug purposes
+            // window.location.href = "customer.html";
           } else {
             displayStatusMessage(_errMsg);
           }

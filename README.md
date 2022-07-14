@@ -22,3 +22,4 @@
 
 ## possible vulnerabilities
 
+ - token could be stolen, should be linked to ip

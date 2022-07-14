@@ -30,10 +30,11 @@ function _validateLoginForm() {
             })
                 .then(function (myJson) {
                 console.log(myJson);
-                var isValid = myJson[0];
-                var _errMsg = myJson[1];
+                var isValid = myJson.success;
+                var _errMsg = myJson.message;
                 if (isValid) {
-                    window.location.href = "mail-check.html";
+                    displayStatusMessage(_errMsg); //debug purposes
+                    // window.location.href = "customer.html";
                 }
                 else {
                     displayStatusMessage(_errMsg);
