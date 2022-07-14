@@ -27,7 +27,7 @@
         <div class="subtitle text">
             Creadentials are provided upon registration.
         </div>
-        <form id="registrationForm" class="vertical" onsubmit="event.preventDefault(); _validateRegistrationForm();">
+        <form id="registrationForm" class="vertical" onsubmit="event.preventDefault(); _validateLoginForm();">
             <input type="text" id="user-email" name="user-email" placeholder="email">
             <input type="text" id="user-password" name="user-password" placeholder="password">
             <div class="g-recaptcha" data-sitekey="6Lev1M0gAAAAACTZFk7u3MFHdZA1SWxzRz8qUkkQ"></div>
@@ -39,8 +39,7 @@
         <div class="loader" id="loading-animation"></div>
     </div>
     <script defer src='assets/js/main.js'></script>
-    <script defer src='assets/js/mailauth.js'></script>
-    <script defer src='assets/js/register.js'></script>
+    <script defer src='assets/js/login.js'></script>
 </body>
 
 </html>

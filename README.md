@@ -16,6 +16,9 @@
 
 `sass --watch assets/scss:assets/css --style compressed`
 
+## watching typescript
+
+`tsc assets/ts/* --outDir assets/js --watch true`
+
 ## possible vulnerabilities
 
- - infinite richieste col bearer dallo stesso ip
