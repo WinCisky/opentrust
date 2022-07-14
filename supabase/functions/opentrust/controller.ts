@@ -1,8 +1,14 @@
-import { addCustomer, getCustomer, refreshTokenCustomer } from "./model.ts";
+import {
+  addCustomer,
+  getCustomer,
+  getCustomerWithPassword,
+  storeAccessToken,
+} from "./model.ts";
 import { registrationTemplateContent } from "./template.ts";
+import { LoginCredentials, RegistrationCredentials } from "./interfaces.ts";
 
-const MAIL_ACTUAL = "simonellassimo@gmail.com"
-const MAIL_ALIAS = "register@opentrust.it"
+const MAIL_ACTUAL = "simonellassimo@gmail.com";
+const MAIL_ALIAS = "register@opentrust.it";
 
 const PWD_CHARS =
   "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -22,11 +28,6 @@ const CAPTCHA_SECRET = Deno.env.get("CAPTCHA_SECRET") ?? "";
 const VERIFY_CAPTCHA_URI = "https://www.google.com/recaptcha/api/siteverify";
 
 const REFRESH_TOKEN = Deno.env.get("REFRESH_TOKEN") ?? "";
-
-interface CustomResponse {
-  error: boolean;
-  message: string;
-}
 
 async function processCustomerCode(code: string) {
   try {
@@ -79,9 +80,8 @@ async function sendMail(
   content: string,
   utf8 = false,
 ) {
-  const userId = MAIL_ACTUAL
-  const message =
-    "from:" + MAIL_ALIAS + "\r\n" +
+  const userId = MAIL_ACTUAL;
+  const message = "from:" + MAIL_ALIAS + "\r\n" +
     "to:" + recipient + "\r\n" +
     "subject:" + subject + "\r\n" +
     "Content-Type: text/html; charset='UTF-8'\r\n" +
@@ -123,13 +123,12 @@ async function digestMessage(message: string) {
 }
 
 async function userRegistration(
-  email: string,
-  recaptcha: string,
+  data: RegistrationCredentials,
 ): Promise<{ success: boolean; message: string }> {
   const response = await fetch(VERIFY_CAPTCHA_URI, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `secret=${CAPTCHA_SECRET}&response=${recaptcha}`,
+    body: `secret=${CAPTCHA_SECRET}&response=${data.recaptcha}`,
   });
   const challenge = await response.json();
   if (!challenge.success) {
@@ -139,7 +138,7 @@ async function userRegistration(
     };
   }
 
-  const customer = await getCustomer(email);
+  const customer = await getCustomer(data.email);
   if (!customer || customer.length > 0) {
     return { success: false, message: "the email is already registered" };
   }
@@ -148,7 +147,7 @@ async function userRegistration(
   const hashedPassword = await digestMessage(password);
 
   //save on db
-  const [resultAdd, errorAdd] = await addCustomer(email, hashedPassword);
+  const [resultAdd, errorAdd] = await addCustomer(data.email, hashedPassword);
   if (errorAdd) {
     return { success: false, message: errorAdd.message };
   }
@@ -162,10 +161,10 @@ async function userRegistration(
 
   //send email
   const sendResp = await sendMail(
-    email,
+    data.email,
     "Opentrust registration completed",
-    registrationTemplateContent(email, password, uuid),
-    true
+    registrationTemplateContent(data.email, password, uuid),
+    true,
   );
 
   console.log(sendResp);
@@ -173,4 +172,45 @@ async function userRegistration(
   return { success: true, message: sendResp };
 }
 
-export { processCustomerCode, sendMail, userRegistration };
+async function userLogin(
+  data: LoginCredentials,
+): Promise<{ success: boolean; message: string }> {
+  const response = await fetch(VERIFY_CAPTCHA_URI, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `secret=${CAPTCHA_SECRET}&response=${data.recaptcha}`,
+  });
+  const challenge = await response.json();
+  if (!challenge.success) {
+    return {
+      success: challenge.success,
+      message: challenge["error-codes"] ?? "",
+    };
+  }
+
+  console.log("user login recaptcha success");
+
+  const customer = await getCustomerWithPassword(
+    data.email,
+    data.hashedPassword,
+  );
+  if (!customer || customer.length > 0) {
+    //create new random token
+    const pwd = createPassword();
+    const randomToken = await digestMessage(pwd);
+    //TODO: check if another user has the same token -> make new token
+    //store the token and the timestamp for creation
+    const [ _resultStore, errorStore ] = await storeAccessToken(data.email, randomToken);
+    if(errorStore)
+      return { success: false, message: errorStore.message };    
+
+    return { success: true, message: JSON.stringify({ token : randomToken }) };
+  }
+
+  return {
+    success: false,
+    message: "user not found or wrong email password combination",
+  };
+}
+
+export { processCustomerCode, sendMail, userLogin, userRegistration };

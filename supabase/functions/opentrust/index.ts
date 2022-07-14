@@ -8,6 +8,7 @@ import {
   processCustomerCode,
   sendMail,
   userRegistration,
+  userLogin,
 } from "./controller.ts";
 
 console.log("Hello from Functions!");
@@ -34,11 +35,17 @@ serve(async (req) => {
       case "/neworder":
         console.log(req.json());
         break;
-      // deno-lint-ignore no-case-declarations
       case "/userRegistration":
-        const { email, recaptcha } = await req.json();
         return new Response(
-          JSON.stringify(await userRegistration(email, recaptcha)),
+          JSON.stringify(await userRegistration(await req.json())),
+          {
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+            status: 200,
+          },
+        );
+      case "/userLogin":
+        return new Response(
+          JSON.stringify(await userLogin(await req.json())),
           {
             headers: { ...corsHeaders, "Content-Type": "application/json" },
             status: 200,

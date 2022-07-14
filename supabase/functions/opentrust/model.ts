@@ -25,7 +25,21 @@ async function getCustomer(
   return result.data;
 }
 
-async function refreshTokenCustomer(
+async function getCustomerWithPassword(
+  email: string,
+  password: string,
+) {
+  const result = await supabaseClient
+    .from("customers")
+    .select()
+    .match({
+      email: email,
+      hashed_password: password,
+    });
+  return result.data;
+}
+
+async function storeAccessToken(
   email: string,
   access_token: string,
 ) {
@@ -49,4 +63,10 @@ async function getCustomerFromToken(
   return result.data;
 }
 
-export { addCustomer, getCustomer, getCustomerFromToken, refreshTokenCustomer };
+export {
+  addCustomer,
+  getCustomer,
+  getCustomerFromToken,
+  getCustomerWithPassword,
+  storeAccessToken
+};
