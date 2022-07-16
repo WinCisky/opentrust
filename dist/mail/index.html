@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>opentrust registration</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="description" content="Opentrust registration page">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    
+    
+    <link rel="icon" type="image/x-icon" href="../assets/icon_review.21da86ef.svg">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script type="module" crossorigin src="../assets/main.297ebd7d.js"></script>
+  <script type="module" crossorigin src="../assets/main.f1516a51.js"></script>
+  <link rel="stylesheet" href="../assets/main.65104251.css">
+  <link rel="stylesheet" href="../assets/register.8945290e.css">
+  <link rel="stylesheet" href="../assets/mailauth.525ad872.css">
+</head>
+
+<!-- https://help.shopify.com/en/manual/orders/notifications/webhooks -->
+
+<body>
+    <div class="header high-contrast" onclick="location.href='/';">
+        <img src="../assets/icon_review_white.f0728cb5.svg" alt="logo">
+        opentrust
+    </div>
+    <div class="central-content" id="central-content">
+        <img src="../assets/icon_mail.3ab13879.svg" alt="register with your email"/>
+        <div class="subtitle text">
+            You'll receive an email with your account.
+        </div>
+        <form id="registrationForm" class="vertical" onsubmit="event.preventDefault();">
+            <input class="big-margin" type="text" id="user-email" name="user-email" placeholder="email">
+            <div class="g-recaptcha" data-sitekey="6Lev1M0gAAAAACTZFk7u3MFHdZA1SWxzRz8qUkkQ"></div>
+            <input type="submit" value="Submit">
+        </form>
+        <div class="status-message" id="status-message"></div>
+    </div>
+    <div class="center-content">
+        <div class="loader" id="loading-animation"></div>
+    </div>
+    
+    
+    
+</body>
+
+</html>

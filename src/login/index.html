@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>opentrust registration</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="description" content="Opentrust login page">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/scss/font.scss'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/scss/main.scss'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/scss/register.scss'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/scss/mailauth.scss'>
+    <link rel="icon" type="image/x-icon" href="../assets/img/icon_review.svg">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+    <div class="header high-contrast" onclick="location.href='/';">
+        <img src="../assets/img/icon_review_white.svg" alt="logo">
+        opentrust
+    </div>
+    <div class="central-content" id="central-content">
+        <img src="../assets/img/icon_user.svg" alt="register with your email"/>
+        <div class="subtitle text">
+            Creadentials are provided upon registration.
+        </div>
+        <form id="loginForm" class="vertical" onsubmit="event.preventDefault();">
+            <input type="text" id="user-email" name="user-email" placeholder="email">
+            <input class="big-margin" type="password" id="user-password" name="user-password" placeholder="password">
+            <div class="g-recaptcha" data-sitekey="6Lev1M0gAAAAACTZFk7u3MFHdZA1SWxzRz8qUkkQ"></div>
+            <input type="submit" value="Submit">
+        </form>
+        <div class="status-message" id="status-message"></div>
+    </div>
+    <div class="center-content">
+        <div class="loader" id="loading-animation"></div>
+    </div>
+    <script defer type="module" src='../assets/ts/main.ts'></script>
+    <script defer type="module" src='../assets/ts/login.ts'></script>
+</body>
+
+</html>

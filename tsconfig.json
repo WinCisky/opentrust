@@ -1,17 +1,20 @@
-// tsconfig.json
 {
-  "include": ["./assets/ts/*.ts"],
-  "watchOptions": {"watchDirectory": "usefsevents"},
-  "compileOnSave": true,
   "compilerOptions": {
-    // this aligns with Vue's browser support
-    "target": "es5",
-    // this enables stricter inference for data properties on `this`
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "Node",
     "strict": true,
-    // if using webpack 2+ or rollup, to leverage tree shaking:
-    "module": "es2015",
-    "outDir": "./assets/js",
-    "moduleResolution": "node",
-    "lib":["ES2016", "DOM"]
-  }
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"]
 }

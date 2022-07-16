@@ -12,14 +12,19 @@
 
  - Recupero review e divisione in base allo stato
 
-## watching sass
+## develop locally
 
-`sass --watch assets/scss:assets/css --style compressed`
+``` bash
+# fisrt time
+npm install
+# locally
+npm run dev
+# with hosting
+npm run host
+```
 
-## watching typescript
+## build
 
-`tsc assets/ts/* --outDir assets/js --watch true`
-
-## possible vulnerabilities
-
- - token could be stolen, should be linked to ip
+``` bash
+npm run build
+```
