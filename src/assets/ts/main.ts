@@ -2,5 +2,5 @@ import { validateRegistrationForm } from './register'
 import { validateLoginForm } from './login'
 
 
-document.querySelector('#loginForm')?.addEventListener('click', validateLoginForm);
-document.querySelector('#registrationForm')?.addEventListener('click', validateRegistrationForm);
+document.querySelector('#loginForm')?.addEventListener('submit', validateLoginForm);
+document.querySelector('#registrationForm')?.addEventListener('submit', validateRegistrationForm);

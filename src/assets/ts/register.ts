@@ -37,7 +37,7 @@ export function validateRegistrationForm() {
         const isValid = myJson.success;
         const _errMsg = myJson.message;
         if (isValid) {
-          window.location.href = "mailcheck/";
+          window.location.href = "/mailcheck/";
         } else {
           displayStatusMessage(_errMsg);
         }
