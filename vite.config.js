@@ -22,7 +22,7 @@ export default defineConfig({
                 customer: resolve(root, 'customer/index.html'),
             }
         },
-        outDir: `${_dirname}/dist`,
+        outDir: `${_dirname}/docs`,
         emptyOutDir: true
     }
 })
