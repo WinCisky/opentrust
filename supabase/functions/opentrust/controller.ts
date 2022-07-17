@@ -1,11 +1,19 @@
+import { supabaseClient } from "../_shared/supabaseClient.ts";
 import {
   addCustomer,
   getCustomer,
   getCustomerWithPassword,
   storeAccessToken,
 } from "./model.ts";
-import { registrationTemplateContent } from "./template.ts";
-import { LoginCredentials, RegistrationCredentials } from "./interfaces.ts";
+import {
+  registrationTemplateContent,
+  verifyTemplateContent,
+} from "./template.ts";
+import {
+  CustomResponse,
+  LoginCredentials,
+  RegistrationCredentials,
+} from "./interfaces.ts";
 
 const MAIL_ACTUAL = "simonellassimo@gmail.com";
 const MAIL_ALIAS = "register@opentrust.it";
@@ -122,6 +130,48 @@ async function digestMessage(message: string) {
   return hashHex;
 }
 
+async function inviteLink(email: string): Promise<CustomResponse> {
+  const { data, error } = await supabaseClient.auth.api.generateLink(
+    "signup",
+    email,
+  );
+  const link = (data !== null && ("action_link" in data))
+    ? (data.action_link) ?? "No action link"
+    : "Not user";
+  if (!error) {
+    return { error: false, message: link };
+  }
+  return { error: true, message: "Error creating link" };
+}
+
+async function userRegistrationTest(
+  data: RegistrationCredentials,
+): Promise<{ success: boolean; message: string }> {
+  const password = createPassword();
+  const { data: user, error } = await supabaseClient.auth.api.createUser({
+    email: data.email,
+    password: password,
+  });
+  const link = await inviteLink(data.email);
+  if (link.error) {
+    return { success: false, message: link.message };
+  }
+  if (error) {
+    return { success: false, message: error?.message };
+  }
+  //send mail with auth url
+  const sendResp = await sendMail(
+    data.email,
+    "Opentrust verify email",
+    verifyTemplateContent(link.message),
+    true,
+  );
+  return {
+    success: true,
+    message: `USER: ${JSON.stringify(sendResp)}`,
+  };
+}
+
 async function userRegistration(
   data: RegistrationCredentials,
 ): Promise<{ success: boolean; message: string }> {
@@ -200,11 +250,15 @@ async function userLogin(
     const randomToken = await digestMessage(pwd);
     //TODO: check if another user has the same token -> make new token
     //store the token and the timestamp for creation
-    const [ _resultStore, errorStore ] = await storeAccessToken(data.email, randomToken);
-    if(errorStore)
-      return { success: false, message: errorStore.message };    
+    const [_resultStore, errorStore] = await storeAccessToken(
+      data.email,
+      randomToken,
+    );
+    if (errorStore) {
+      return { success: false, message: errorStore.message };
+    }
 
-    return { success: true, message: JSON.stringify({ token : randomToken }) };
+    return { success: true, message: JSON.stringify({ token: randomToken }) };
   }
 
   return {
@@ -213,4 +267,10 @@ async function userLogin(
   };
 }
 
-export { processCustomerCode, sendMail, userLogin, userRegistration };
+export {
+  processCustomerCode,
+  sendMail,
+  userLogin,
+  userRegistration,
+  userRegistrationTest,
+};

@@ -9,6 +9,7 @@ import {
   sendMail,
   userRegistration,
   userLogin,
+  userRegistrationTest
 } from "./controller.ts";
 
 console.log("Hello from Functions!");
@@ -36,8 +37,15 @@ serve(async (req) => {
         console.log(req.json());
         break;
       case "/userRegistration":
+        // return new Response(
+        //   JSON.stringify(await userRegistration(await req.json())),
+        //   {
+        //     headers: { ...corsHeaders, "Content-Type": "application/json" },
+        //     status: 200,
+        //   },
+        // );
         return new Response(
-          JSON.stringify(await userRegistration(await req.json())),
+          JSON.stringify(await userRegistrationTest(await req.json())),
           {
             headers: { ...corsHeaders, "Content-Type": "application/json" },
             status: 200,

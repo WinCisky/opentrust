@@ -8,3 +8,8 @@ export interface LoginCredentials {
   email: string;
   hashedPassword: string;
 }
+
+export interface CustomResponse {
+  error: boolean;
+  message: string;
+}

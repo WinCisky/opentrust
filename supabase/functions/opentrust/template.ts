@@ -3,6 +3,38 @@ const ENDPOINT_URL =
 const SHOPIFY_WEBHOOK_GUIDE =
   "https://help.shopify.com/en/manual/orders/notifications/webhooks#create-webhooks";
 
+function verifyTemplateContent(
+    link: string
+) : string {
+    return `
+    <!doctype html>
+    <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <title>Opentrust Verify Email</title>
+            <style>
+            </style>
+        </head>
+        <body>
+            <div class="content">
+                <div class="row">
+                    <h2>
+                        You've requested to be registered on Opentrust
+                    </h2>
+                </div>
+                <div class="row">
+                    <p>Follow &nbsp;<a href="${link}"><strong>this link</strong></a>&nbsp; to verify your email</p>
+                </div>
+                <br>
+                <div>
+                    <p>from opentrust 🪴</p>
+                </div>
+            </div>
+        </body>
+    </html>`;
+}
+
 function registrationTemplateContent(
   email: string,
   password: string,
@@ -43,4 +75,4 @@ function registrationTemplateContent(
 </html>`;
 }
 
-export { registrationTemplateContent };
+export { registrationTemplateContent, verifyTemplateContent };
