@@ -14,7 +14,6 @@
     <link rel='stylesheet' type='text/css' media='screen' href='../assets/scss/register.scss'>
     <link rel='stylesheet' type='text/css' media='screen' href='../assets/scss/mailauth.scss'>
     <link rel="icon" type="image/x-icon" href="../assets/img/icon_review.svg">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <!-- https://help.shopify.com/en/manual/orders/notifications/webhooks -->
@@ -27,11 +26,11 @@
     <div class="central-content" id="central-content">
         <img src="../assets/img/icon_mail.svg" alt="register with your email"/>
         <div class="subtitle text">
-            You'll receive an email with your account.
+            You'll receive a confirmation email.
         </div>
         <form id="registrationForm" class="vertical" onsubmit="event.preventDefault();">
-            <input class="big-margin" type="text" id="user-email" name="user-email" placeholder="email">
-            <div class="g-recaptcha" data-sitekey="6Lev1M0gAAAAACTZFk7u3MFHdZA1SWxzRz8qUkkQ"></div>
+            <input type="text" id="user-email" name="user-email" placeholder="email">
+            <input class="big-margin" type="password" id="user-password" name="user-password" placeholder="password">
             <input type="submit" value="Submit">
         </form>
         <div class="status-message" id="status-message"></div>

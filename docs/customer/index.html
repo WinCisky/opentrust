@@ -14,8 +14,9 @@
     
     <link rel="icon" type="image/x-icon" href="../assets/icon_review.21da86ef.svg">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <script type="module" crossorigin src="../assets/main.297ebd7d.js"></script>
-  <link rel="stylesheet" href="../assets/main.65104251.css">
+  <script type="module" crossorigin src="../assets/customer.3a5ba2da.js"></script>
+  <link rel="modulepreload" crossorigin href="../assets/index.4a759b80.js">
+  <link rel="stylesheet" href="../assets/index.65104251.css">
   <link rel="stylesheet" href="../assets/index.594271cd.css">
 </head>
 
@@ -23,23 +24,23 @@
     <div class="page-container">
         <div class="menu">
             <div class="top">
-                <div onclick="_menuReviewed()">
+                <div id="menuReviewed">
                     <img src="../assets/icon_reviewed.7600485a.svg" width="30px" height="30px">
                     <div class="text">Reviewed</div>
                 </div>
-                <div onclick="_menuSent()">
+                <div id="menuSent">
                     <img src="../assets/icon_sent.575f91f5.svg" width="30px" height="30px">
                     <div class="text">Sent</div>
                 </div>
-                <div onclick="_menuPending()">
+                <div id="menuPending">
                     <img src="../assets/icon_wait.05ce8f12.svg" width="30px" height="30px">
                     <div class="text">Pending</div>
                 </div>
             </div>
             <div class="bottom">
-                <div onclick="_menuSettings()">
-                    <img src="../assets/icon_gear.fcb49b37.svg" width="30px" height="30px">
-                    <div class="text">Settings</div>
+                <div id="menuLogout">
+                    <img src="../assets/icon_door.72a488ba.svg" width="30px" height="30px">
+                    <div class="text">Logout</div>
                 </div>
             </div>
         </div>

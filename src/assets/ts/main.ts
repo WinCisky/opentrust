@@ -1,8 +1,12 @@
-import { validateRegistrationForm } from './register'
-import { validateLoginForm } from './login'
-import { logInSubmitted } from './test'
+import { validateRegistrationForm } from "./register";
+import { validateLoginForm } from "./login";
 
-
-document.querySelector('#loginForm')?.addEventListener('submit', validateLoginForm);
-document.querySelector('#registrationForm')?.addEventListener('submit', validateRegistrationForm);
-document.querySelector('#testForm')?.addEventListener('submit', logInSubmitted);
+// Forms
+document.querySelector("#loginForm")?.addEventListener(
+  "submit",
+  validateLoginForm,
+);
+document.querySelector("#registrationForm")?.addEventListener(
+  "submit",
+  validateRegistrationForm,
+);
