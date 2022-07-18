@@ -23,6 +23,6 @@ export default defineConfig({
             }
         },
         outDir: `${_dirname}/docs`,
-        // emptyOutDir: true
+        emptyOutDir: true
     }
 })
