@@ -3,6 +3,15 @@ export interface ServerResponse {
   message: string;
 }
 
+export interface Orders {
+  id: string,
+  email: string,
+  created_at: string,
+  order_data: JSON | null,
+  user_id: string,
+  sent: boolean
+}
+
 export class Const {
   static readonly urlSupabase =
     "https://gjclmptpvaepykpghadl.supabase.co";
