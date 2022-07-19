@@ -1,5 +1,7 @@
 import { Const, Orders, Reviews } from "./const";
 import { createClient } from "@supabase/supabase-js";
+import imgIconSent from "../img/icon_sent.svg";
+import imgIconWait from "../img/icon_wait.svg";
 
 const supabase = createClient(Const.urlSupabase, Const.anonBearer);
 // check if user is already logged in
@@ -73,9 +75,7 @@ function showOrders(orders: Orders[]) {
     day: "numeric",
   };
   orders.forEach((order) => {
-    let img_icon = order.sent
-      ? "../assets/img/icon_sent.svg"
-      : "../assets/img/icon_wait.svg";
+    let img_icon = order.sent ? imgIconSent : imgIconWait;
     let img_class = order.sent
       ? "black-to-green-filter"
       : "black-to-yellow-filter";
@@ -106,7 +106,7 @@ async function retrieveReviews(user_id: string) {
     .from("reviews")
     .select()
     .eq("user_id", userId)
-    .order("created_at", { ascending : false })
+    .order("created_at", { ascending: false })
     .limit(10);
 
   if (!error) {
@@ -125,7 +125,7 @@ async function retrieveOrders(user_id: string, _sent: boolean) {
     .from("orders")
     .select()
     .eq("user_id", userId)
-    .order("created_at", { ascending : false })
+    .order("created_at", { ascending: false })
     .limit(15);
 
   if (!error) {
