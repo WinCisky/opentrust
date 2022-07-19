@@ -10,6 +10,11 @@ body{
     box-shadow: 0px 3px 6px var(--cheap);
 }
 
+.fa.fa-star{
+    font-size: 22px;
+    cursor: pointer;
+}
+
 .checked{
     /* color: orange; */
     color: var(--star);

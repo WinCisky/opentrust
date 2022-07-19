@@ -1,0 +1,1 @@
+import"./index.65e6a27d.js";/* empty css             */import{v as r}from"./register.23365a3c.js";import{v as e}from"./login.bcc21b82.js";import"./helper.bd8c8b3b.js";var t;(t=document.querySelector("#loginForm"))==null||t.addEventListener("submit",e);var o;(o=document.querySelector("#registrationForm"))==null||o.addEventListener("submit",r);
