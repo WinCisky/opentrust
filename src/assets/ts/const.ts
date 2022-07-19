@@ -12,6 +12,17 @@ export interface Orders {
   sent: boolean
 }
 
+export interface Reviews {
+  id: string,
+  created_at: string,
+  user_id: string,
+  order_id: string,
+  name: string,
+  title: string,
+  description: string,
+  score: number
+}
+
 export class Const {
   static readonly urlSupabase =
     "https://gjclmptpvaepykpghadl.supabase.co";
