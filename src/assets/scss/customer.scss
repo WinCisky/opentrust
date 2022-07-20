@@ -1,31 +1,32 @@
-.page-container{
+.page-container {
   display: flex;
   flex-direction: row;
   height: 100vh;
   overflow: hidden;
-  .menu{
+
+  .menu {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--main);
 
-    .top{
+    .top {
       margin-top: 20px;
     }
 
-    .bottom{
+    .bottom {
       margin-bottom: 20px;
     }
 
     .top,
-    .bottom{
+    .bottom {
       margin-left: 20px;
       margin-right: 40px;
       display: flex;
       flex-direction: column;
       gap: 15px;
 
-      &> div{
+      &>div {
         display: flex;
         flex-direction: row;
         align-items: flex-end;
@@ -33,23 +34,24 @@
         gap: 10px;
         cursor: pointer;
 
-        .text{
+        .text {
           color: var(--white);
         }
 
-        img{
-          -webkit-filter: invert(100%); /* Safari/Chrome */
+        img {
+          -webkit-filter: invert(100%);
+          /* Safari/Chrome */
           filter: invert(100%);
         }
       }
     }
   }
 
-  .list{
+  .list {
     flex: 1;
     overflow-y: auto;
 
-    #list-content{
+    #list-content {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -57,7 +59,7 @@
       gap: 25px;
       margin: 30px;
 
-      .list-item{
+      .list-item {
         width: 100%;
         display: flex;
         flex-direction: row;
@@ -69,31 +71,59 @@
         border-radius: 10px;
         min-height: 50px;
 
-        .black-to-yellow-filter{
+        .black-to-yellow-filter {
           filter: invert(67%) sepia(94%) saturate(282%) hue-rotate(360deg) brightness(104%) contrast(95%);
         }
 
-        .black-to-green-filter{
+        .black-to-green-filter {
           filter: invert(70%) sepia(10%) saturate(1416%) hue-rotate(73deg) brightness(102%) contrast(90%);
         }
       }
     }
   }
+
+  #menuLogout.button {
+    border: 2px solid var(--secondary);
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: var(--distorted);
+    cursor: pointer;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
+    width: fit-content;
+  }
+
+  #menuLogout.button:hover {
+    border: 2px solid var(--moderate);
+  }
+
+  #menuLogout.button:active {
+    background-color: var(--secondary);
+    border: 2px solid var(--secondary);
+  }
 }
 
 @media screen and (max-width: 767px) {
 
-  .page-container{
+  .page-container {
     flex-direction: column-reverse;
-    .menu{
+
+    .menu {
       flex-direction: row;
+
       .top,
-      .bottom{
+      .bottom {
         flex-direction: row;
         margin: 20px;
         gap: 40px;
 
-        .text{
+        .text {
           display: none;
         }
       }

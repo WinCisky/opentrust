@@ -3,6 +3,9 @@ import { createClient } from "@supabase/supabase-js";
 import imgIconSent from "../img/icon_sent.svg";
 import imgIconWait from "../img/icon_wait.svg";
 
+const ENDPOINT_URL = "https://neworder.deno.dev/";
+const SHOPIFY_WEBHOOK_GUIDE =
+  "https://help.shopify.com/en/manual/orders/notifications/webhooks#create-webhooks";
 const supabase = createClient(Const.urlSupabase, Const.anonBearer);
 // check if user is already logged in
 const userId = supabase.auth.user()?.id ?? "";
@@ -17,6 +20,10 @@ document.querySelector("#menuReviewed")?.addEventListener(
 );
 document.querySelector("#menuOrders")?.addEventListener("click", menuOrders);
 document.querySelector("#menuLogout")?.addEventListener("click", menuLogout);
+document.querySelector("#menuCredentials")?.addEventListener(
+  "click",
+  menuCredentials,
+);
 
 function menuReviewed() {
   retrieveReviews(userId);
@@ -24,6 +31,33 @@ function menuReviewed() {
 
 function menuOrders() {
   retrieveOrders(userId, false);
+}
+
+function menuCredentials() {
+  const list_content = document.querySelector("#list-content") ?? null;
+  if (list_content) {
+    list_content.innerHTML = `
+    <div>
+      <div>
+        <div class="row">
+          <p>You need to setup a &nbsp;<a href="${SHOPIFY_WEBHOOK_GUIDE}"><strong>shopify webhook</strong></a>&nbsp;
+          with the following URL: &nbsp;<strong>${ENDPOINT_URL + userId}</strong></p>
+        </div>
+        <div class="row">
+          <p>Set &nbsp;<strong>Order payment</strong>&nbsp; as Event, &nbsp;<strong>JSON</strong>&nbsp;
+          as Format and the API version with tag &nbsp;<strong>Latest</strong>.</p>
+        </div>
+      </div>
+      <div>
+        <div id='menuLogout' class='button'>Logout</div>
+      </div>
+    </div>
+    `;
+    document.querySelector("#menuLogout")?.addEventListener(
+      "click",
+      menuLogout,
+    );
+  }
 }
 
 function menuLogout() {
