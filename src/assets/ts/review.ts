@@ -5,8 +5,8 @@ function handleStarClick(evt: any) {
   for (let index = 1; index <= stars_number; index++) {
     const element = document.querySelector(`#star-${index}`);
     index <= selected_index
-      ? element?.classList.add("checked")
-      : element?.classList.remove("checked");
+      ? element?.classList.add("text-amber-500")
+      : element?.classList.remove("text-amber-500");
   }
 }
 
