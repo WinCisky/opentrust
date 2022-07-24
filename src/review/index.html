@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-gray-50">
+<html lang="en" class="h-full bg-gray-50 dark:bg-slate-800">
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>opentrust</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <meta name="description" content="Opentrust leave a review">
-    <link rel='stylesheet' type='text/css' media='screen' href='./../assets/index.css'>
-    <link rel="icon" type="image/x-icon" href="../assets/img/icon_review.svg">
-    <!-- stars icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>opentrust</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name="description" content="Opentrust leave a review">
+  <link rel='stylesheet' type='text/css' media='screen' href='./../assets/index.css'>
+  <link rel="icon" type="image/x-icon" href="../assets/img/icon_review.svg">
+  <!-- stars icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="h-full">
@@ -18,51 +18,47 @@
 
 
 
-    <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="min-w-400">
-          
-          <div class="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
-              <div class="shadow sm:rounded-md sm:overflow-hidden">
-                <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                  <div class="font-normal text-md text-slate-900 dark:text-slate-200">
-                    <p>Hello Bob,</p>
-                    <p>write about your shopping experience</p>
-                    <p>on Opentrust</p>
-                  </div>
-      
-                  <div>
-                    <textarea id="description" required name="description" rows="3" class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Description"></textarea>
-                  </div>
+  <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="min-w-400">
 
-                  <div class="font-normal text-md text-slate-900 dark:text-slate-200">
-                    <p>Give your review a score</p>
-                  </div>
-
-                  <div class="flex justify-center gap-1">
-                    <span class="cursor-pointer text-amber-500 !text-xl fa fa-star" id="star-1"></span>
-                    <span class="cursor-pointer text-amber-500 !text-xl fa fa-star" id="star-2"></span>
-                    <span class="cursor-pointer text-amber-500 !text-xl fa fa-star" id="star-3"></span>
-                    <span class="cursor-pointer text-amber-500 !text-xl fa fa-star" id="star-4"></span>
-                    <span class="cursor-pointer !text-xl fa fa-star" id="star-5"></span>
-                  </div>
-      
-                  
-
-
-                  <div class="font-normal text-md text-slate-900 dark:text-slate-200">
-                    <p>Give your review a title </p>
-                  </div>
-                  <input type="text" name="title-text" required class="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Title" />
-                </div>
-                <div class="px-4 py-3 bg-white text-right sm:px-6">
-                  <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Save</button>
-                </div>
+      <div class="mt-5 md:mt-0 md:col-span-2">
+        <form action="#" method="POST">
+          <div class="shadow sm:rounded-md sm:overflow-hidden">
+            <div class="px-4 py-5 bg-white dark:bg-slate-700 space-y-6 sm:p-6">
+              <div class="font-normal text-md text-slate-900 dark:text-slate-200">
+                <p>Hello Bob,</p>
+                <p>write about your shopping experience</p>
+                <p>on Opentrust</p>
               </div>
-            </form>
+
+              <div>
+                <textarea id="description" required name="description" rows="4" maxlength = "2000"
+                  class="px-3 py-2 dark:bg-slate-600 dark:border-slate-500 dark:text-slate-200 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-blue-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                  placeholder="Description"></textarea>
+              </div>
+
+              <div class="font-normal text-md text-slate-900 dark:text-slate-200">
+                <p>Give your review a score</p>
+              </div>
+
+              <div class="flex justify-center gap-1">
+                <span class="cursor-pointer text-amber-500 !text-xl fa fa-star" id="star-1"></span>
+                <span class="cursor-pointer text-amber-500 !text-xl fa fa-star" id="star-2"></span>
+                <span class="cursor-pointer text-amber-500 !text-xl fa fa-star" id="star-3"></span>
+                <span class="cursor-pointer text-amber-500 !text-xl fa fa-star" id="star-4"></span>
+                <span class="cursor-pointer !text-xl fa fa-star" id="star-5"></span>
+              </div>
+
+            </div>
+            <div class="px-4 py-3 bg-white dark:bg-slate-700 text-right sm:px-6">
+              <button type="submit"
+                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Save</button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
+    </div>
+  </div>
 
 
 
@@ -74,7 +70,7 @@
 
 
 
-    <script defer type="module" src='../assets/ts/review.ts'></script>
+  <script defer type="module" src='../assets/ts/review.ts'></script>
 </body>
 
 </html>
