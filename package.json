@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "host": "vite --host",
-    "build": "tsc && vite build && echo -n 'opentrust.it' > docs/CNAME",
+    "build": "tsc && vite build && printf 'opentrust.it' > docs/CNAME",
     "preview": "vite preview"
   },
   "devDependencies": {
