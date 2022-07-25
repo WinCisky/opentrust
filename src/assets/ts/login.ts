@@ -26,9 +26,9 @@ async function mailPasswordLogin(
 
 export function validateLoginForm() {
   const userEmail =
-    (document.getElementById("user-email") as HTMLInputElement).value;
+    (document.getElementById("email-address") as HTMLInputElement).value;
   const userPassword =
-    (document.getElementById("user-password") as HTMLInputElement).value;
+    (document.getElementById("password") as HTMLInputElement).value;
   togglePageLoadingAnimation(true);
   mailPasswordLogin(userEmail, userPassword).then((result) => {
     togglePageLoadingAnimation(false);

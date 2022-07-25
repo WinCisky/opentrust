@@ -19,7 +19,7 @@ document.querySelector("#menuReviewed")?.addEventListener(
   menuReviewed,
 );
 document.querySelector("#menuOrders")?.addEventListener("click", menuOrders);
-document.querySelector("#menuLogout")?.addEventListener("click", menuLogout);
+document.querySelector("#user-menu-logout")?.addEventListener("click", menuLogout);
 document.querySelector("#menuCredentials")?.addEventListener(
   "click",
   menuCredentials,
@@ -67,7 +67,7 @@ function menuLogout() {
 }
 
 function showList(list: string) {
-  const list_content = document.querySelector("#list-content") ?? null;
+  const list_content = document.querySelector("#table-content") ?? null;
   if (list_content) {
     list_content.innerHTML = list;
   }
@@ -83,20 +83,20 @@ function showReviews(reviews: any[]) {
   reviews.forEach((review: Reviews) => {
     let review_date = new Date(review.created_at);
 
-    result += `<div class='list-item'>`;
-    result += `  <div>`;
+    result += `<tr>`;
+    result += `  <td class="border-b border-slate-100  p-4 pl-8 text-slate-500 ">`;
     result += review_date.toLocaleDateString("en-US", date_options);
-    result += `  </div>`;
-    result += `  <div>`;
+    result += `  </td>`;
+    result += `  <td class="border-b border-slate-100  p-4 text-slate-500 ">`;
     result += review.name ?? "- no name -";
-    result += `  </div>`;
-    result += `  <div>`;
+    result += `  </td>`;
+    result += `  <td class="border-b border-slate-100  p-4 text-slate-500 ">`;
     result += review.title;
-    result += `  </div>`;
-    result += `  <div>`;
+    result += `  </td>`;
+    result += `  <td class="border-b border-slate-100  p-4 pr-8 text-slate-500 ">`;
     result += review.score / 20; // <- should be shown in stars
-    result += `  </div>`;
-    result += `</div>`;
+    result += `  </td>`;
+    result += `</tr>`;
   });
   showList(result);
 }
@@ -115,18 +115,18 @@ function showOrders(orders: Orders[]) {
       : "black-to-yellow-filter";
     let review_date = new Date(order.created_at);
 
-    result += `<div class='list-item'>`;
-    result += `  <div>`;
+    result += `<tr>`;
+    result += `  <td class="border-b border-slate-100  p-4 pl-8 text-slate-500 ">`;
     result += review_date.toLocaleDateString("en-US", date_options);
-    result += `  </div>`;
-    result += `  <div>`;
+    result += `  </td>`;
+    result += `  <td class="border-b border-slate-100  p-4 text-slate-500 ">`;
     result += order.email;
-    result += `  </div>`;
-    result += `  <div>`;
+    result += `  </td>`;
+    result += `  <td class="border-b border-slate-100  p-4 pr-8 text-slate-500 ">`;
     result +=
       `    <img src='${img_icon}' class='${img_class}' width=40px height=40px>`;
-    result += `  </div>`;
-    result += `</div>`;
+    result += `  </td>`;
+    result += `</tr>`;
   });
   showList(result);
 }
@@ -169,5 +169,21 @@ async function retrieveOrders(user_id: string, _sent: boolean) {
   }
 }
 
+function toggleUserMenu() {
+  document.querySelector("#user-menu")?.classList.toggle("hidden")
+}
+
+function hideUserMenu() {
+  document.querySelector("#user-menu")?.classList.add("hidden")
+}
+
+window.addEventListener('click', function (e) {
+  if(!document.getElementById('user-menu-button')?.contains(e.target as Node))
+    hideUserMenu();
+  
+  
+})
+
+document.querySelector("#user-menu-button")?.addEventListener("click", toggleUserMenu)
 // retrieveReviews(userId);
 retrieveOrders(userId, false);
