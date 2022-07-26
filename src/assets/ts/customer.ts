@@ -20,6 +20,7 @@ document.querySelector("#menuReviewed")?.addEventListener(
 );
 document.querySelector("#menuOrders")?.addEventListener("click", menuOrders);
 document.querySelector("#user-menu-logout")?.addEventListener("click", menuLogout);
+document.querySelector("#user-menu-mobile-logout")?.addEventListener("click", menuLogout);
 document.querySelector("#menuCredentials")?.addEventListener(
   "click",
   menuCredentials,
@@ -177,13 +178,23 @@ function hideUserMenu() {
   document.querySelector("#user-menu")?.classList.add("hidden")
 }
 
+function toggleMobileMenu() {
+  document.querySelector("#mobile-menu")?.classList.toggle("hidden")
+}
+
+function hideMobileMenu() {
+  document.querySelector("#mobile-menu")?.classList.toggle("hidden")
+}
+
 window.addEventListener('click', function (e) {
   if(!document.getElementById('user-menu-button')?.contains(e.target as Node))
     hideUserMenu();
-  
-  
+
+  if(!document.getElementById('mobile-menu-button')?.contains(e.target as Node))
+    hideMobileMenu();
 })
 
 document.querySelector("#user-menu-button")?.addEventListener("click", toggleUserMenu)
+document.querySelector("#mobile-menu-button")?.addEventListener("click", toggleMobileMenu)
 // retrieveReviews(userId);
 retrieveReviews(userId);

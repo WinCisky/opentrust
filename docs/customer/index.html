@@ -10,10 +10,11 @@
         
     <link rel="icon" type="image/x-icon" href="../assets/icon_review.21da86ef.svg">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <script type="module" crossorigin src="../assets/customer.740beb42.js"></script>
+  <script type="module" crossorigin src="../assets/customer.f9e0d44c.js"></script>
   <link rel="modulepreload" crossorigin href="../assets/modulepreload-polyfill.b7f2da20.js">
   <link rel="modulepreload" crossorigin href="../assets/index.77536023.js">
-  <link rel="stylesheet" href="../assets/index.91824314.css">
+  <link rel="modulepreload" crossorigin href="../assets/icon_wait.ae8f9c92.js">
+  <link rel="stylesheet" href="../assets/index.2c5669cf.css">
 </head>
 
 <body class="h-full">
@@ -80,7 +81,7 @@
               </div>
               <div class="-mr-2 flex md:hidden">
                 <!-- Mobile menu button -->
-                <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                <button type="button" id="mobile-menu-button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
                   <span class="sr-only">Open main menu</span>
                   <!--
                     Heroicon name: outline/menu
@@ -104,12 +105,12 @@
           </div>
       
           <!-- Mobile menu, show/hide based on menu state. -->
-          <div class="md:hidden" id="mobile-menu">
+          <div class="hidden md:hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Reviews</a>
       
-              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Orders</a>
+              <a href="/orders/" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Orders</a>
             </div>
             <div class="pt-4 pb-3 border-t border-gray-700">
               <div class="flex items-center px-5">
@@ -122,7 +123,7 @@
       
                 <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Settings</a>
       
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Sign out</a>
+                <a href="#" id="user-menu-mobile-logout" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Sign out</a>
               </div>
             </div>
           </div>

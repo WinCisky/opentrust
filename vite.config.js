@@ -20,6 +20,7 @@ export default defineConfig({
                 mailcheck: resolve(root, 'mailcheck/index.html'),
                 login: resolve(root, 'login/index.html'),
                 customer: resolve(root, 'customer/index.html'),
+                orders: resolve(root, 'orders/index.html'),
             }
         },
         outDir: `${_dirname}/docs`,
