@@ -186,4 +186,4 @@ window.addEventListener('click', function (e) {
 
 document.querySelector("#user-menu-button")?.addEventListener("click", toggleUserMenu)
 // retrieveReviews(userId);
-retrieveReviews(userId);
+retrieveOrders(userId, false);
