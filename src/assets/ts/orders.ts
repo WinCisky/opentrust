@@ -84,7 +84,7 @@ function showReviews(reviews: any[]) {
   reviews.forEach((review: Reviews) => {
     let review_date = new Date(review.created_at);
 
-    result += `<tr>`;
+    result += `<tr class="odd:bg-white even:bg-slate-50">`;
     result += `  <td class="border-b border-slate-100  p-4 pl-8 text-slate-500 ">`;
     result += review_date.toLocaleDateString("en-US", date_options);
     result += `  </td>`;
@@ -116,6 +116,7 @@ function showOrders(orders: Orders[]) {
       : "fill-yellow";
     let review_date = new Date(order.created_at);
 
+    // result += `<tr class="odd:bg-white even:bg-slate-50">`;
     result += `<tr>`;
     result += `  <td class="border-b border-slate-100  p-4 pl-8 text-slate-500 ">`;
     result += review_date.toLocaleDateString("en-US", date_options);

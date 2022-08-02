@@ -10,11 +10,19 @@ if(supabase.auth.user())
 async function mailPasswordRegistration(
   email: string,
   password: string,
+  company: string
 ): Promise<ServerResponse> {
-  let { user, error } = await supabase.auth.signUp({
-    email: email,
-    password: password,
-  });
+  let { user, error } = await supabase.auth.signUp(
+    {
+      email: email,
+      password: password,
+    },
+    {
+      data: { 
+        company: company
+      }
+    }
+  );
 
   if (error) {
     return { success: false, message: error.message };
@@ -25,15 +33,18 @@ async function mailPasswordRegistration(
 
 export function validateRegistrationForm() {
   const userEmail =
-    (document.getElementById("user-email") as HTMLInputElement).value;
+    (document.getElementById("email-address") as HTMLInputElement).value;
   const userPassword =
-    (document.getElementById("user-password") as HTMLInputElement).value;
+    (document.getElementById("password") as HTMLInputElement).value;
+  const userCompany =
+    (document.getElementById("company") as HTMLInputElement).value;
   togglePageLoadingAnimation(true);
-  mailPasswordRegistration(userEmail, userPassword).then((result) => {
+  mailPasswordRegistration(userEmail, userPassword, userCompany).then((result) => {
     togglePageLoadingAnimation(false);
     if (result.success) {
       window.location.href = "/mailcheck/";
     } else {
+      console.log(result.message);
       displayStatusMessage(result.message);
     }
   });

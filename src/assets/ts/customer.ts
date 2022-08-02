@@ -74,6 +74,23 @@ function showList(list: string) {
   }
 }
 
+function ratingToHtml(rating: number){
+  let result = ""
+
+  // rating goes from 1 to 5
+  for (let i = 1; i <= 5; i++) {
+    const star_color = i <= rating ? "text-yellow-500" : "text-slate-200"
+    result += `
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ${star_color}" viewBox="0 0 20 20" fill="currentColor">
+      <path
+        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+    </svg>
+    `
+  }
+
+  return result
+}
+
 function showReviews(reviews: any[]) {
   let result = "";
   let date_options: Intl.DateTimeFormatOptions = {
@@ -95,7 +112,9 @@ function showReviews(reviews: any[]) {
     result += review.title;
     result += `  </td>`;
     result += `  <td class="border-b border-slate-100  p-4 pr-8 text-slate-500 ">`;
-    result += review.score / 20; // <- should be shown in stars
+    result += `    <div class="flex items-center">`;
+    result += ratingToHtml(review.score);
+    result += `    </div>`;
     result += `  </td>`;
     result += `</tr>`;
   });
@@ -151,6 +170,70 @@ async function retrieveReviews(user_id: string) {
   }
 }
 
+
+const snackbar = document.querySelector("#snackbar")
+let snackbarStack: string[] = [];
+
+function reset_animation(el: HTMLElement) {
+  el.style.animation = 'none';
+  el.offsetHeight; /* trigger reflow */
+  el.style.animation = ''; 
+}
+
+function processSnackbarQueue(){
+  // check if there are no more elements
+  if(snackbarStack.length <= 0)
+    return
+
+  // grab first element
+  let textToShow = snackbarStack[0]
+  // I assume the snackbar is hidden
+  if(snackbar){
+    reset_animation(snackbar as HTMLElement)
+    snackbar.innerHTML = textToShow
+    snackbar.classList.remove("hidden")
+    setTimeout(() => {
+      snackbar.classList.add("hidden")
+      snackbarStack.shift()
+      // recursion till the queue is empty
+      processSnackbarQueue()
+    }, 2000)
+  }
+}
+
+function showOnSnackbar(text: string){
+  let wasEmpty = (snackbarStack.length <= 0)
+  snackbarStack.push(text)
+  if(wasEmpty)
+    processSnackbarQueue()
+}
+
+function copyUrl() {
+  const copyText = document.querySelector("#url-to-copy")
+  const permissionName = "clipboard-write" as PermissionName;
+  let copyResult = "Can't copy to clipboard"
+  navigator.permissions.query({ name : permissionName}).then((result) => {
+    if (result.state == "granted" || result.state == "prompt") {
+      // /* write to the clipboard now */
+      // console.log("permission granted")
+      navigator.clipboard.writeText(copyText?.innerHTML.trim() ?? "").then(function() {
+        /* clipboard successfully set */
+        copyResult = "Copied to clipboard"
+        // show result on snackbar
+        showOnSnackbar(copyResult)
+      }, function() {
+        // /* clipboard write failed */
+        // console.log("copy failed!")
+        // show result on snackbar
+        showOnSnackbar(copyResult)
+      });
+    } else {
+      // show result on snackbar
+      showOnSnackbar(copyResult)
+    }
+  });
+}
+
 async function retrieveOrders(user_id: string, _sent: boolean) {
   if (user_id === "") {
     return;
@@ -196,5 +279,9 @@ window.addEventListener('click', function (e) {
 
 document.querySelector("#user-menu-button")?.addEventListener("click", toggleUserMenu)
 document.querySelector("#mobile-menu-button")?.addEventListener("click", toggleMobileMenu)
+document.querySelector("#copy-button")?.addEventListener("click", copyUrl)
+let urlToCopy = document.querySelector("#url-to-copy")
+if(urlToCopy)
+  urlToCopy.innerHTML = ENDPOINT_URL + userId
 // retrieveReviews(userId);
 retrieveReviews(userId);
