@@ -1,4 +1,5 @@
 import { supabaseClient } from "../_shared/supabaseClient.ts";
+import { definitions } from "./supabase.ts";
 
 async function addCustomer(
   email: string,
@@ -63,10 +64,38 @@ async function getCustomerFromToken(
   return result.data;
 }
 
+// get all orders not sent older than a week
+async function getUnsentEmails() {
+  const d = new Date();
+  d.setDate(d.getDate()-1);
+  const result = await supabaseClient
+    .from<definitions["orders"]>("orders")
+    .select()
+    .lt('created_at', d.toISOString())
+    .match({ sent: false });
+  if(result.error)
+    return [];
+  return result.data;
+}
+
+async function setEmailSent(orderId: string) {
+  const result = await supabaseClient
+    .from<definitions["orders"]>("orders")
+    .update({
+      sent: true,
+    })
+    .match({ id: orderId });
+  if(result.error)
+    return [];
+  return result.data;
+}
+
 export {
   addCustomer,
   getCustomer,
   getCustomerFromToken,
   getCustomerWithPassword,
-  storeAccessToken
+  storeAccessToken,
+  getUnsentEmails,
+  setEmailSent,
 };

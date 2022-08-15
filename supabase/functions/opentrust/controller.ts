@@ -4,10 +4,13 @@ import {
   getCustomer,
   getCustomerWithPassword,
   storeAccessToken,
+  getUnsentEmails,
+  setEmailSent,
 } from "./model.ts";
 import {
   registrationTemplateContent,
   verifyTemplateContent,
+  reviewTemplateContent,
 } from "./template.ts";
 import {
   CustomResponse,
@@ -217,7 +220,7 @@ async function userRegistration(
     true,
   );
 
-  console.log(sendResp);
+  // console.log(sendResp);
 
   return { success: true, message: sendResp };
 }
@@ -267,10 +270,34 @@ async function userLogin(
   };
 }
 
+async function sendEmails() {
+  // gather data necessary to send emails
+  const emailsData = await getUnsentEmails();
+  // no data? stop here thanks
+  if(!emailsData)
+    return;
+  for(const emailData of emailsData){
+    const shopName = emailData.shop ?? "";
+    const _sendResp = await sendMail(
+      emailData.email,
+      `Lascia una recensione a ${shopName}`,
+      reviewTemplateContent(shopName, emailData.id, emailData.customer_locale),
+      true,
+    );
+    // TODO: should check if the sending was successful
+    // if(_sendResp){}
+    // update sent as true
+    const _sentResp = await setEmailSent(emailData.id);
+    // TODO: check if the update was successful
+  }
+}
+
 export {
   processCustomerCode,
   sendMail,
   userLogin,
   userRegistration,
   userRegistrationTest,
+  sendEmails,
+  getUnsentEmails,
 };

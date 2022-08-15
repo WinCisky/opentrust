@@ -3,6 +3,30 @@ const ENDPOINT_URL =
 const SHOPIFY_WEBHOOK_GUIDE =
   "https://help.shopify.com/en/manual/orders/notifications/webhooks#create-webhooks";
 
+interface translation{
+    [propName: string]: string;
+}
+
+const translationsIT : translation = {
+    "Your opinion is important!" : "La tua opinione conta!",
+    "You recently completed an order on " : "Hai completato di recente un ordine su ",
+    " and we'd like to hear about your experience." : "e vorremmo sapere com'è andata.",
+    "Click on&nbsp;<a href='https://opentrust.it/review/" : "Clicca su&nbsp;<a href='https://opentrust.it/review/",
+    "'><strong>this link</strong></a>&nbsp;to write about your experience." : "'><strong>questo link</strong></a>&nbsp;per raccontare la tua esperienza.",
+    "- from Opentrust.it 🪴" : "- da Opentrust.it 🪴"
+}
+
+const translateMe = function(locale: string, toTranslate: string): string{
+    switch (locale) {
+        case "it":
+            if(toTranslate in translationsIT)
+                return translationsIT[toTranslate];
+            break;
+    }
+    // translation failed!
+    return toTranslate;
+}
+
 function verifyTemplateContent(
     link: string
 ) : string {
@@ -75,4 +99,41 @@ function registrationTemplateContent(
 </html>`;
 }
 
-export { registrationTemplateContent, verifyTemplateContent };
+function reviewTemplateContent(
+    shopName: string,
+    orderId: string,
+    locale: string
+  ): string {
+    return `
+    <!doctype html>
+    <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <title>Opentrust Registration Email</title>
+            <style>
+            </style>
+        </head>
+        <body>
+            <div class="content">
+                <div class="row">
+                    <h2>
+                      ${translateMe(locale, "Your opinion is important!")}
+                    </h2>
+                </div>
+                <div class="row">
+                    <p>${translateMe(locale, "You recently completed an order on ") + shopName + translateMe(locale, " and we'd like to hear about your experience.")}</p>
+                </div>
+                <div class="row">
+                    <p>${translateMe(locale, "Click on&nbsp;<a href='https://opentrust.it/review/") + orderId + translateMe(locale, "'><strong>this link</strong></a>&nbsp;to write about your experience.")}</p>
+                </div>
+                <br>
+                <div>
+                    <p>${translateMe(locale, "- from Opentrust.it 🪴")}</p>
+                </div>
+            </div>
+        </body>
+    </html>`;
+  }
+
+export { registrationTemplateContent, verifyTemplateContent, reviewTemplateContent };

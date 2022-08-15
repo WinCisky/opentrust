@@ -9,7 +9,8 @@ import {
   sendMail,
   userRegistration,
   userLogin,
-  userRegistrationTest
+  userRegistrationTest,
+  getUnsentEmails
 } from "./controller.ts";
 
 console.log("Hello from Functions!");
@@ -31,7 +32,11 @@ serve(async (req) => {
         await processCustomerCode(code);
         break;
       case "/test2":
+        console.log(await getUnsentEmails());
         // console.log(await sendMail("xsimone97@hotmail.it", "test", "content!"));
+        break;
+      case "/sendEmails":
+        await processCustomerCode(code);
         break;
       case "/neworder":
         console.log(req.json());
