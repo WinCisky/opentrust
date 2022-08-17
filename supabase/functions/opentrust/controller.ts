@@ -281,7 +281,7 @@ async function sendEmails() {
     const _sendResp = await sendMail(
       emailData.email,
       `Lascia una recensione a ${shopName}`,
-      reviewTemplateContent(shopName, emailData.id, emailData.customer_locale),
+      reviewTemplateContent(shopName, emailData.name, emailData.id, emailData.customer_locale),
       true,
     );
     // TODO: should check if the sending was successful

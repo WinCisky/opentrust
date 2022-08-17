@@ -10,7 +10,8 @@ import {
   userRegistration,
   userLogin,
   userRegistrationTest,
-  getUnsentEmails
+  getUnsentEmails,
+  sendEmails,
 } from "./controller.ts";
 
 console.log("Hello from Functions!");
@@ -36,7 +37,7 @@ serve(async (req) => {
         // console.log(await sendMail("xsimone97@hotmail.it", "test", "content!"));
         break;
       case "/sendEmails":
-        await processCustomerCode(code);
+        await sendEmails();
         break;
       case "/neworder":
         console.log(req.json());

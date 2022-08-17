@@ -257,6 +257,7 @@ export interface paths {
           sent?: parameters["rowFilter.orders.sent"];
           shop?: parameters["rowFilter.orders.shop"];
           customer_locale?: parameters["rowFilter.orders.customer_locale"];
+          name?: parameters["rowFilter.orders.name"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -313,6 +314,7 @@ export interface paths {
           sent?: parameters["rowFilter.orders.sent"];
           shop?: parameters["rowFilter.orders.shop"];
           customer_locale?: parameters["rowFilter.orders.customer_locale"];
+          name?: parameters["rowFilter.orders.name"];
         };
         header: {
           /** Preference */
@@ -333,6 +335,7 @@ export interface paths {
           sent?: parameters["rowFilter.orders.sent"];
           shop?: parameters["rowFilter.orders.shop"];
           customer_locale?: parameters["rowFilter.orders.customer_locale"];
+          name?: parameters["rowFilter.orders.name"];
         };
         body: {
           /** orders */
@@ -454,8 +457,11 @@ export interface definitions {
      * @default now()
      */
     created_at: string;
-    /** Format: text */
-    name?: string;
+    /**
+     * Format: text
+     * @default Bob
+     */
+    name: string;
     /** Format: text */
     description: string;
     /** Format: smallint */
@@ -498,6 +504,11 @@ export interface definitions {
      * @default en
      */
     customer_locale: string;
+    /**
+     * Format: text
+     * @default Bob
+     */
+    name: string;
   };
   user_reviews: {
     /** Format: text */
@@ -596,6 +607,8 @@ export interface parameters {
   "rowFilter.orders.shop": string;
   /** Format: text */
   "rowFilter.orders.customer_locale": string;
+  /** Format: text */
+  "rowFilter.orders.name": string;
   /** @description user_reviews */
   "body.user_reviews": definitions["user_reviews"];
   /** Format: text */
