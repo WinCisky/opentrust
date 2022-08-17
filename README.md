@@ -1,16 +1,12 @@
 # opentrust
 
- - Aggiungere selezione stelle per la recensione
+## todo
 
- - Creazion di credenziali ed invio via mail per la registrazione dell'utente
+- add auth checks
 
- - Pagina di login
+- save review data
 
- - Controllo credenziali per effetture il login e salvataggio nei cookie di queste
-
- - Pagina listing review (mail, stato, review lasciate)
-
- - Recupero review e divisione in base allo stato
+- send review email with cronjob
 
 ## develop locally
 

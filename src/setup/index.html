@@ -28,7 +28,7 @@
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                                <a href="#"
+                                <a href="/customer/"
                                     class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                                     aria-current="page">Reviews</a>
 
@@ -138,6 +138,10 @@
                 <a href="#"
                   class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Settings</a> -->
 
+                        <a href="#"
+                            class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                            id="user-menu-item-1">Setup</a>
+
                         <a href="#" id="user-menu-mobile-logout"
                             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Sign
                             out</a>
@@ -183,7 +187,8 @@
                                                 Step 2
                                             </dt>
                                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                Select the <b>Notifications</b> category, scroll down to the Webhooks section and click on <b>Create webhook</b>.
+                                                Select the <b>Notifications</b> category, scroll down to the Webhooks
+                                                section and click on <b>Create webhook</b>.
                                             </dd>
                                         </div>
                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -191,10 +196,12 @@
                                                 Step 3
                                             </dt>
                                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                Select <b>Order payment</b> as Event, <b>JSON</b> as format, <b>(Latest)</b> as Webhook API version, paste the following url in the <b>URL</b> field and then <b>Save</b>
+                                                Select <b>Order payment</b> as Event, <b>JSON</b> as format,
+                                                <b>(Latest)</b> as Webhook API version, paste the following url in the
+                                                <b>URL</b> field and then <b>Save</b>
                                             </dd>
                                         </div>
-                                        
+
                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm font-medium text-gray-500">
                                                 URL
@@ -209,17 +216,52 @@
                                                                 loading ...
                                                             </span>
                                                         </div>
-                                                        <div class="flex items-center ml-4 flex-shrink-0 cursor-pointer" id="copy-button">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                                        <div class="flex items-center ml-4 flex-shrink-0 cursor-pointer"
+                                                            id="copy-button">
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                class="flex-shrink-0 h-5 w-5 text-gray-400" fill="none"
+                                                                viewBox="0 0 24 24" stroke="currentColor"
+                                                                stroke-width="2">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                                             </svg>
-                                                            <div
-                                                                class="font-medium text-blue-600 hover:text-blue-500">
+                                                            <div class="font-medium text-blue-600 hover:text-blue-500">
                                                                 Copy
                                                             </div>
                                                         </div>
                                                     </li>
                                                 </ul>
+                                            </dd>
+                                        </div>
+
+                                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-500">
+                                                Verification
+                                            </dt>
+                                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                In order to verify that the informations are coming from Shopify we need
+                                                your <b>verification key</b> (the one highlighted in yellow).
+                                                <br>
+
+                                                <div class="flex justify-between items-stretch mt-3">
+                                                    <div class="flex-1">
+                                                        <input class="w-full h-full p-3 bg-white border border-r-0 border-gray-300 rounded-l-md focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="a3a6aeb..." id="verification-key">
+                                                    </div>
+                                                    <div class="p-3 px-4 bg-blue-600 text-white rounded-r-md cursor-pointer" id="save-verification-key">
+                                                        Save
+                                                    </div>
+
+                                                </div>
+
+                                                
+                                            </dd>
+                                        </div>
+                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-500">
+                                                Test
+                                            </dt>
+                                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                If everything's correct click on the <b>Send test notification</b> button in Shopify. You should see the mock entry in the Orders page then.
                                             </dd>
                                         </div>
                                     </dl>
@@ -230,12 +272,15 @@
                     </div>
                 </div>
 
+                <img class="max-w-4xl w-full mx-auto py-12 sm:px-6 lg:px-8" src="../assets/img/setup.png">
+
                 <!-- /End replace -->
             </div>
         </main>
     </div>
 
-    <div id="snackbar" class="w-64 bg-gray-700 text-white text-center fixed left-1/2 bottom-10 -ml-32 rounded-md p-4 animate-toast-animation border-gray-700 hidden">
+    <div id="snackbar"
+        class="w-64 bg-gray-700 text-white text-center fixed left-1/2 bottom-10 -ml-32 rounded-md p-4 animate-toast-animation border-gray-700 hidden">
     </div>
 
 

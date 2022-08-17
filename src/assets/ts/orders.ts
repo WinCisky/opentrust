@@ -184,7 +184,7 @@ function toggleMobileMenu() {
 }
 
 function hideMobileMenu() {
-  document.querySelector("#mobile-menu")?.classList.toggle("hidden")
+  document.querySelector("#mobile-menu")?.classList.add("hidden")
 }
 
 window.addEventListener('click', function (e) {

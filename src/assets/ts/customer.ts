@@ -74,7 +74,7 @@ function showList(list: string) {
   }
 }
 
-function ratingToHtml(rating: number){
+function ratingToHtml(rating: number) {
   let result = ""
 
   // rating goes from 1 to 5
@@ -177,18 +177,18 @@ let snackbarStack: string[] = [];
 function reset_animation(el: HTMLElement) {
   el.style.animation = 'none';
   el.offsetHeight; /* trigger reflow */
-  el.style.animation = ''; 
+  el.style.animation = '';
 }
 
-function processSnackbarQueue(){
+function processSnackbarQueue() {
   // check if there are no more elements
-  if(snackbarStack.length <= 0)
+  if (snackbarStack.length <= 0)
     return
 
   // grab first element
   let textToShow = snackbarStack[0]
   // I assume the snackbar is hidden
-  if(snackbar){
+  if (snackbar) {
     reset_animation(snackbar as HTMLElement)
     snackbar.innerHTML = textToShow
     snackbar.classList.remove("hidden")
@@ -197,14 +197,14 @@ function processSnackbarQueue(){
       snackbarStack.shift()
       // recursion till the queue is empty
       processSnackbarQueue()
-    }, 2000)
+    }, 1950)
   }
 }
 
-function showOnSnackbar(text: string){
+function showOnSnackbar(text: string) {
   let wasEmpty = (snackbarStack.length <= 0)
   snackbarStack.push(text)
-  if(wasEmpty)
+  if (wasEmpty)
     processSnackbarQueue()
 }
 
@@ -212,16 +212,16 @@ function copyUrl() {
   const copyText = document.querySelector("#url-to-copy")
   const permissionName = "clipboard-write" as PermissionName;
   let copyResult = "Can't copy to clipboard"
-  navigator.permissions.query({ name : permissionName}).then((result) => {
+  navigator.permissions.query({ name: permissionName }).then((result) => {
     if (result.state == "granted" || result.state == "prompt") {
       // /* write to the clipboard now */
       // console.log("permission granted")
-      navigator.clipboard.writeText(copyText?.innerHTML.trim() ?? "").then(function() {
+      navigator.clipboard.writeText(copyText?.innerHTML.trim() ?? "").then(function () {
         /* clipboard successfully set */
         copyResult = "Copied to clipboard"
         // show result on snackbar
         showOnSnackbar(copyResult)
-      }, function() {
+      }, function () {
         // /* clipboard write failed */
         // console.log("copy failed!")
         // show result on snackbar
@@ -232,6 +232,41 @@ function copyUrl() {
       showOnSnackbar(copyResult)
     }
   });
+}
+
+function showVerificationKey() {
+  const verificationKeyInput = document.getElementById("verification-key") as HTMLInputElement
+  if(verificationKeyInput){ // check field exists
+    const userMetadata = supabase.auth.user()!.user_metadata
+    if('verification_key' in userMetadata) { // check user has already saved the key
+      const verificationKey = userMetadata.verification_key
+      verificationKeyInput.value = verificationKey
+    }
+  }
+}
+
+function saveVerificationKey() {
+  let verificationSaveResult = "Error, not saved"
+  const verificationKeyInput = document.getElementById("verification-key") as HTMLInputElement
+  if (verificationKeyInput) {
+    const verificationKey = verificationKeyInput.value.trim()
+    if (verificationKey.length > 0) {
+      supabase.auth.update({
+        data: { verification_key: verificationKey }
+      }).then((result) => {
+        if (result.error)
+          verificationSaveResult = result.error.message
+        else
+          verificationSaveResult = "Key saved"
+
+        // show result on snackbar
+        showOnSnackbar(verificationSaveResult)
+      })
+    }
+  } else {
+    // show result on snackbar
+    showOnSnackbar(verificationSaveResult)
+  }
 }
 
 async function retrieveOrders(user_id: string, _sent: boolean) {
@@ -266,22 +301,24 @@ function toggleMobileMenu() {
 }
 
 function hideMobileMenu() {
-  document.querySelector("#mobile-menu")?.classList.toggle("hidden")
+  document.querySelector("#mobile-menu")?.classList.add("hidden")
 }
 
 window.addEventListener('click', function (e) {
-  if(!document.getElementById('user-menu-button')?.contains(e.target as Node))
+  if (!document.getElementById('user-menu-button')?.contains(e.target as Node))
     hideUserMenu();
 
-  if(!document.getElementById('mobile-menu-button')?.contains(e.target as Node))
+  if (!document.getElementById('mobile-menu-button')?.contains(e.target as Node))
     hideMobileMenu();
 })
 
 document.querySelector("#user-menu-button")?.addEventListener("click", toggleUserMenu)
 document.querySelector("#mobile-menu-button")?.addEventListener("click", toggleMobileMenu)
 document.querySelector("#copy-button")?.addEventListener("click", copyUrl)
+document.querySelector("#save-verification-key")?.addEventListener("click", saveVerificationKey)
 let urlToCopy = document.querySelector("#url-to-copy")
-if(urlToCopy)
+if (urlToCopy)
   urlToCopy.innerHTML = ENDPOINT_URL + userId
 // retrieveReviews(userId);
 retrieveReviews(userId);
+showVerificationKey()
