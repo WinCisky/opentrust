@@ -20,6 +20,7 @@ import {
 
 const MAIL_ACTUAL = "simonellassimo@gmail.com";
 const MAIL_ALIAS = "register@opentrust.it";
+const MAIL_ALIAS_REVIEW = "review@opentrust.it";
 
 const PWD_CHARS =
   "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -90,9 +91,10 @@ async function sendMail(
   subject: string,
   content: string,
   utf8 = false,
+  review = false
 ) {
   const userId = MAIL_ACTUAL;
-  const message = "from:" + MAIL_ALIAS + "\r\n" +
+  const message = "from:" + review ? MAIL_ALIAS_REVIEW : MAIL_ALIAS + "\r\n" +
     "to:" + recipient + "\r\n" +
     "subject:" + subject + "\r\n" +
     "Content-Type: text/html; charset='UTF-8'\r\n" +
@@ -282,7 +284,7 @@ async function sendEmails() {
       emailData.email,
       `Lascia una recensione a ${shopName}`,
       reviewTemplateContent(shopName, emailData.name, emailData.id, emailData.customer_locale),
-      true,
+      true, true
     );
     // TODO: should check if the sending was successful
     // if(_sendResp){}
