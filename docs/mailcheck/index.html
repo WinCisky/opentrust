@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-gray-50">
 
 <head>
     <meta charset='utf-8'>
@@ -7,40 +7,36 @@
     <title>opentrust registration</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name="description" content="check your email for the credentials">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    
-    
-    <link rel="icon" type="image/x-icon" href="../assets/icon_review.21da86ef.svg">
-  <script type="module" crossorigin src="../assets/modulepreload-polyfill.b7f2da20.js"></script>
-  <script type="module" crossorigin src="../assets/index.77536023.js"></script>
-  <script type="module" crossorigin src="../assets/register.b59505a4.js"></script>
-  <link rel="stylesheet" href="../assets/index.818ad228.css">
+    <link rel="icon" type="image/x-icon" href="../assets/t-icon.b4f1168b.svg">
+  <link rel="stylesheet" href="../assets/index.689c8bfe.css">
 </head>
 
 <!-- https://help.shopify.com/en/manual/orders/notifications/webhooks -->
 
-<body>
-    <div class="header high-contrast" onclick="location.href='/';">
-        <img src="../assets/icon_review_white.f0728cb5.svg" alt="logo">
-        opentrust
-    </div>
-    <div class="central-content">
-        <img src="../assets/icon_mail_check.17e1e5a6.svg" alt="check your email"/>
-        <div class="subtitle text">
-            <h2>Thank you for registering!</h2>
-            <br>
-            Check your emails
-            <br>
-            (remember to check the spam folder)
-        </div>
+<body class="h-full">
 
-        <div class="button" onclick="location.href='/';">
-            Home
+    <div class="min-h-full flex items-center justify-center py-12">
+        <!-- This example requires Tailwind CSS v2.0+ -->
+        <div class="w-fit py-12 px-4">
+            <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <span class="block text-blue-600">Check your email.</span>
+                <span class="block">Have you checked your spam folder?</span>
+            </h2>
+            <div class="mt-8 flex">
+                <div class="inline-flex rounded-md shadow">
+                    <a href="/login/"
+                        class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                        Sign in </a>
+                </div>
+                <div class="ml-3 inline-flex rounded-md shadow">
+                    <a href="/"
+                        class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50">
+                        Home </a>
+                </div>
+            </div>
         </div>
     </div>
-    
 </body>
 
 </html>
