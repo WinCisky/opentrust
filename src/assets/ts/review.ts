@@ -1,4 +1,4 @@
-declare var lang: string | null
+let lang = document.documentElement.lang ? document.documentElement.lang : "en";
 const REVIEW_URL = "https://review.deno.dev";
 const total_stars = 5;
 let stars_number = 4;
@@ -36,41 +36,47 @@ export function validateReviewForm() {
   const name = findGetParameter("name");
   const description =
     (document.getElementById("description") as HTMLInputElement).value;
-  fetch(REVIEW_URL + '/' + order, {
-    method: 'POST',
-    mode: 'cors',
+  fetch(REVIEW_URL + "/" + order, {
+    method: "POST",
+    mode: "cors",
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      "Accept": "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-        description: description, 
-        score: stars_number,
-        name: name
-    })
-  }).then(() => window.location.href = (lang && lang == "it") ? "/thanks/it/" : "/thanks/" );
+      description: description,
+      score: stars_number,
+      name: name,
+    }),
+  }).then(() =>
+    window.location.href = (lang == "it") ? "/thanks/it/" : "/thanks/"
+  );
 }
 
-function displayName(){
+function displayName() {
   const userName = findGetParameter("name");
-  if(!userName || userName == "")
+  if (!userName || userName == "") {
     return;
+  }
   const greeting = document.getElementById("greeting");
   let greetingText = greeting?.innerHTML ?? "";
   greetingText += userName + ",";
-  if(greeting)
+  if (greeting) {
     greeting.innerHTML = greetingText;
+  }
 }
 
-function displayWebsite(){
+function displayWebsite() {
   const shop = findGetParameter("shop");
-  if(!shop || shop == "")
+  if (!shop || shop == "") {
     return;
+  }
   const website = document.getElementById("website");
   let websiteText = website?.innerHTML ?? "";
   websiteText += shop;
-  if(website)
+  if (website) {
     website.innerHTML = websiteText;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -89,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   selectedScore(stars_number);
-  
 }, false);
 
 export {};
